@@ -1,0 +1,10 @@
+version: '3'
+services:
+  tldr-bot:
+    container_name: tldr-bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    volumes:
+      - .:/app
