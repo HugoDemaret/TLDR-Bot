@@ -699,6 +699,16 @@ def helpCommand(bot, message, guildData, mots):
                     **Examples:**
                     • `{guildData.prefix}kick @user`
                     """
+        case "getinfo":
+            if len(mots) == 2:
+                title = "getinfo <user>"
+                description = f"""
+                    Gets the info on the user and his/her infractions 
+                    \tYou must be a server administrator or a user with an authorized role to use this command.
+                    \tThe user must be mentioned, not just their name.
+                    **Examples:**
+                    • `{guildData.prefix}getinfo @user`
+                    """
 
         case _:
             bot.send_message(
