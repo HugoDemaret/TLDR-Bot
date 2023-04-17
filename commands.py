@@ -1510,7 +1510,7 @@ def kickUser(bot, message, guildData, mots) -> None:
             f"**{message.author.display_name}**, you didn't mention any user (see `{guildData.prefix}help kick)`",
             message.channel)
         return
-    if message.mentions[0].id in message.guild.members:
+    if message.mentions[0] in message.guild.members:
         asyncio.run_coroutine_threadsafe(mod.kickUser(bot, message, guildData), bot.loop)
         if len(mots) == 3:
             asyncio.run_coroutine_threadsafe(mod.addInfoInFile(bot, message, mots[3], bot.loop))
@@ -1545,7 +1545,7 @@ def banUser(bot, message, guildData, mots):
             f"**{message.author.display_name}**, you didn't mention any user (see `{guildData.prefix}help ban)`",
             message.channel)
         return
-    if message.mentions[0].id in message.guild.members:
+    if message.mentions[0] in message.guild.members:
         asyncio.run_coroutine_threadsafe(mod.banUser(bot, message, guildData), bot.loop)
     return
 
@@ -1571,10 +1571,34 @@ def unbanUser(bot, message, guildData, mots):
             f"**{message.author.display_name}**, you didn't mention any user (see `{guildData.prefix}help unban)`",
             message.channel)
         return
-    if message.mentions[0].id in message.guild.members:
+    if message.mentions[0] in message.guild.members:
         asyncio.run_coroutine_threadsafe(mod.unbanUser(bot, message, guildData), bot.loop)
     return
 
+def getUserInfo(bot, message, guildData, mots):
+    if len(mots) == 1:
+        title = "Current getUserInfo status"
+        # print all the user info in this server
+        description = f"""
+        `{guildData.prefix}getUserInfo <user>` - get the info of the user in this server
+        """
+        embed = discord.Embed(title=title, description=description, colour=discord.Colour.light_gray())
+        asyncio.run_coroutine_threadsafe(message.channel.send(embed=embed), bot.loop)
+        return
+    authorPermed, targetPermed = checkPermissions(message, guildData)
+    if not authorPermed:
+        bot.send_message(
+            f"**{message.author.display_name}**, you must be a server administrator to use this command :/",
+            message.channel)
+        return
+    if len(message.mentions) == 0:
+        bot.send_message(
+            f"**{message.author.display_name}**, you didn't mention any user (see `{guildData.prefix}help unban)`",
+            message.channel)
+        return
+    if message.mentions[0] in message.guild.members:
+        asyncio.run_coroutine_threadsafe(mod.getInfractionInfo(bot, message, guildData), bot.loop)
+    return
 
 def checkPermissions(message, guildData):
     authorPermed = False
