@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>tldr.socialGraph.SocialGraphWorker</title>
+    <meta name="generator" content="pydoctor 22.9.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          tldr <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="tldr.socialGraph.SocialGraphWorker.html" class="internal-link" title="This class"><wbr></wbr>Social<wbr></wbr>Graph<wbr></wbr>Worker</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#add_user" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.add_user">add<wbr></wbr>_user</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#constructor" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.constructor">constructor</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#create_default" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.create_default">create<wbr></wbr>_default</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#isPresent" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.isPresent">is<wbr></wbr>Present</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#on_command_importance" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_importance">on<wbr></wbr>_command<wbr></wbr>_importance</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#on_command_printall" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_printall">on<wbr></wbr>_command<wbr></wbr>_printall</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#on_command_printuser_all" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_printuser_all">on<wbr></wbr>_command<wbr></wbr>_printuser<wbr></wbr>_all</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#on_command_printuser_distance" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_printuser_distance">on<wbr></wbr>_command<wbr></wbr>_printuser<wbr></wbr>_distance</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#on_command_sentiment" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_sentiment">on<wbr></wbr>_command<wbr></wbr>_sentiment</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#on_message" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_message">on<wbr></wbr>_message</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#remove_user" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.remove_user">remove<wbr></wbr>_user</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#save" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.save">save</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#social_graphs" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.social_graphs">social<wbr></wbr>_graphs</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="tldr.socialGraph.html" class="internal-link" title="The parent of this class">social<wbr></wbr>Graph</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.socialGraph.SocialGraph.html" class="internal-link" title="tldr.socialGraph.SocialGraph"><wbr></wbr>Social<wbr></wbr>Graph</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.socialGraph.SocialGraphWorker.html" class="internal-link" title="tldr.socialGraph.SocialGraphWorker"><wbr></wbr>Social<wbr></wbr>Graph<wbr></wbr>Worker</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.socialGraph.html#initiate_graph_worker" class="internal-link" title="tldr.socialGraph.initiate_graph_worker">initiate<wbr></wbr>_graph<wbr></wbr>_worker</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.socialGraph.html#model_path" class="internal-link" title="tldr.socialGraph.model_path">model<wbr></wbr>_path</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.socialGraph.html#sentiment_task" class="internal-link" title="tldr.socialGraph.sentiment_task">sentiment<wbr></wbr>_task</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">tldr</a></code><wbr></wbr>.<code><a href="tldr.socialGraph.html" class="internal-link" title="tldr.socialGraph">socialGraph</a></code><wbr></wbr>.<code><a href="tldr.socialGraph.SocialGraphWorker.html" class="internal-link" title="tldr.socialGraph.SocialGraphWorker">SocialGraphWorker</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">SocialGraphWorker</span>:</code></p>
+          <p><a href="classIndex.html#tldr.socialGraph.SocialGraphWorker">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p>Class SocialGraphWorker Generates the socialgraphs for each guild API to socialgraph :social_graphs: the social graphs</p>
+</div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id13">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.__init__">__init__</a></code></td>
+    <td>Constructor of the SocialGraphWorker class</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#add_user" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.add_user">add<wbr></wbr>_user</a></code></td>
+    <td>Adds a user to the social graph :param user: the user to add :param guild: the guild the user is in :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#constructor" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.constructor">constructor</a></code></td>
+    <td>Constructor of the SocialGraphWorker class :param data: the data of the social graph :param guilds_id: the id of the guilds :param guildsDict: the guilds :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#create_default" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.create_default">create<wbr></wbr>_default</a></code></td>
+    <td>Create a default social graph for a guild :param guild_id: the guild id :param guildData: the guild data :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#isPresent" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.isPresent">is<wbr></wbr>Present</a></code></td>
+    <td>Checks if the social graph of a guild is present</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#on_command_importance" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_importance">on<wbr></wbr>_command<wbr></wbr>_importance</a></code></td>
+    <td>Prints the importance of a user :param message: the message that triggered the command :param user: the user to print the importance of :param bot: the bot :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#on_command_printall" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_printall">on<wbr></wbr>_command<wbr></wbr>_printall</a></code></td>
+    <td>Prints the social graph of the server :param message: the message that triggered the command :param bot: the bot :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#on_command_printuser_all" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_printuser_all">on<wbr></wbr>_command<wbr></wbr>_printuser<wbr></wbr>_all</a></code></td>
+    <td>Prints the social graph of a user :param message: the message that triggered the command :param userId: the user to print the social graph of :param bot: the bot :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#on_command_printuser_distance" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_printuser_distance">on<wbr></wbr>_command<wbr></wbr>_printuser<wbr></wbr>_distance</a></code></td>
+    <td>Prints the social graph of a user at a certain distance :param message: the message that triggered the command :param userId: the user to print the social graph of :param distance: the distance :param bot: the bot :return: None...</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#on_command_sentiment" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_command_sentiment">on<wbr></wbr>_command<wbr></wbr>_sentiment</a></code></td>
+    <td>Prints the sentiment of the user :param message: the message that triggered the command :param bot: the bot :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#on_message" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.on_message">on<wbr></wbr>_message</a></code></td>
+    <td>Updates the social graph when a message is sent :param message: the message that was sent :param repliedMessage: the message that was replied to :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#remove_user" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.remove_user">remove<wbr></wbr>_user</a></code></td>
+    <td>Removes a user from the social graph :param user: the user to remove :param guild: the guild the user is in :return: None</td>
+  </tr><tr class="method">
+    
+    <td>Async Method</td>
+    <td><code><a href="#save" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.save">save</a></code></td>
+    <td>Saves the social graphs to a json file :return: None</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#social_graphs" class="internal-link" title="tldr.socialGraph.SocialGraphWorker.social_graphs">social<wbr></wbr>_graphs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self):
+    
+    <a class="headerLink" href="#__init__" title="tldr.socialGraph.SocialGraphWorker.__init__">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Constructor of the SocialGraphWorker class</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.add_user">
+    
+  </a>
+  <a name="add_user">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">async def</span> <span class="py-defname">add_user</span>(self, user, guild):
+    
+    <a class="headerLink" href="#add_user" title="tldr.socialGraph.SocialGraphWorker.add_user">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Adds a user to the social graph :param user: the user to add :param guild: the guild the user is in :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user:</span><code>discord.User</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.constructor">
+    
+  </a>
+  <a name="constructor">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">constructor</span>(self, data, guilds_id, guildsDict):
+    
+    <a class="headerLink" href="#constructor" title="tldr.socialGraph.SocialGraphWorker.constructor">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Constructor of the SocialGraphWorker class :param data: the data of the social graph :param guilds_id: the id of the guilds :param guildsDict: the guilds :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code>dict</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guilds<wbr></wbr>_id:</span><code>set[<wbr></wbr>int]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guilds<wbr></wbr>Dict:</span><code>dict</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.create_default">
+    
+  </a>
+  <a name="create_default">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">create_default</span>(self, guild_id, guildData):
+    
+    <a class="headerLink" href="#create_default" title="tldr.socialGraph.SocialGraphWorker.create_default">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Create a default social graph for a guild :param guild_id: the guild id :param guildData: the guild data :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild<wbr></wbr>_id:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild<wbr></wbr>Data</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.isPresent">
+    
+  </a>
+  <a name="isPresent">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">isPresent</span>(self, guild_id):
+    
+    <a class="headerLink" href="#isPresent" title="tldr.socialGraph.SocialGraphWorker.isPresent">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Checks if the social graph of a guild is present</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.on_command_importance">
+    
+  </a>
+  <a name="on_command_importance">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">on_command_importance</span>(self, message, user, bot):
+    
+    <a class="headerLink" href="#on_command_importance" title="tldr.socialGraph.SocialGraphWorker.on_command_importance">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Prints the importance of a user :param message: the message that triggered the command :param user: the user to print the importance of :param bot: the bot :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.on_command_printall">
+    
+  </a>
+  <a name="on_command_printall">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">on_command_printall</span>(self, message, bot):
+    
+    <a class="headerLink" href="#on_command_printall" title="tldr.socialGraph.SocialGraphWorker.on_command_printall">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Prints the social graph of the server :param message: the message that triggered the command :param bot: the bot :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.on_command_printuser_all">
+    
+  </a>
+  <a name="on_command_printuser_all">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">on_command_printuser_all</span>(self, message, userId, bot):
+    
+    <a class="headerLink" href="#on_command_printuser_all" title="tldr.socialGraph.SocialGraphWorker.on_command_printuser_all">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Prints the social graph of a user :param message: the message that triggered the command :param userId: the user to print the social graph of :param bot: the bot :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user<wbr></wbr>Id:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.on_command_printuser_distance">
+    
+  </a>
+  <a name="on_command_printuser_distance">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">on_command_printuser_distance</span>(self, message, userId, distance, bot):
+    
+    <a class="headerLink" href="#on_command_printuser_distance" title="tldr.socialGraph.SocialGraphWorker.on_command_printuser_distance">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Prints the social graph of a user at a certain distance :param message: the message that triggered the command :param userId: the user to print the social graph of :param distance: the distance :param bot: the bot :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user<wbr></wbr>Id:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">distance</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.on_command_sentiment">
+    
+  </a>
+  <a name="on_command_sentiment">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">on_command_sentiment</span>(self, message, user, bot):
+    
+    <a class="headerLink" href="#on_command_sentiment" title="tldr.socialGraph.SocialGraphWorker.on_command_sentiment">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Prints the sentiment of the user :param message: the message that triggered the command :param bot: the bot :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.on_message">
+    
+  </a>
+  <a name="on_message">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">on_message</span>(self, message, repliedMessage):
+    
+    <a class="headerLink" href="#on_message" title="tldr.socialGraph.SocialGraphWorker.on_message">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Updates the social graph when a message is sent :param message: the message that was sent :param repliedMessage: the message that was replied to :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">replied<wbr></wbr>Message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.remove_user">
+    
+  </a>
+  <a name="remove_user">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">remove_user</span>(self, user, guild):
+    
+    <a class="headerLink" href="#remove_user" title="tldr.socialGraph.SocialGraphWorker.remove_user">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Removes a user from the social graph :param user: the user to remove :param guild: the guild the user is in :return: None</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.save">
+    
+  </a>
+  <a name="save">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">save</span>(self):
+    
+    <a class="headerLink" href="#save" title="tldr.socialGraph.SocialGraphWorker.save">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Saves the social graphs to a json file :return: None</p>
+</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.socialGraph.SocialGraphWorker.social_graphs">
+    
+  </a>
+  <a name="social_graphs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">social_graphs</span> =
+    
+    <a class="headerLink" href="#social_graphs" title="tldr.socialGraph.SocialGraphWorker.social_graphs">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for tldr,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.9.1 at 2023-04-18 01:32:28.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

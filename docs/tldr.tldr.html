@@ -1,0 +1,1377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>tldr.tldr</title>
+    <meta name="generator" content="pydoctor 22.9.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          tldr <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code class="thisobject"><a href="tldr.tldr.html" class="internal-link" title="This module">tldr</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#cheated" class="internal-link" title="tldr.tldr.cheated">cheated</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#clustering" class="internal-link" title="tldr.tldr.clustering">clustering</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#clusterSimilarity" class="internal-link" title="tldr.tldr.clusterSimilarity">cluster<wbr></wbr>Similarity</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#cosine_distance" class="internal-link" title="tldr.tldr.cosine_distance">cosine<wbr></wbr>_distance</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#distance" class="internal-link" title="tldr.tldr.distance">distance</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#doTldr" class="internal-link" title="tldr.tldr.doTldr">do<wbr></wbr>Tldr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dumpjsonMatrix" class="internal-link" title="tldr.tldr.dumpjsonMatrix">dumpjson<wbr></wbr>Matrix</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#euclidean_distance" class="internal-link" title="tldr.tldr.euclidean_distance">euclidean<wbr></wbr>_distance</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#findMinMatrix" class="internal-link" title="tldr.tldr.findMinMatrix">find<wbr></wbr>Min<wbr></wbr>Matrix</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#getChatByTime" class="internal-link" title="tldr.tldr.getChatByTime">get<wbr></wbr>Chat<wbr></wbr>By<wbr></wbr>Time</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#getMessagesAfter" class="internal-link" title="tldr.tldr.getMessagesAfter">get<wbr></wbr>Messages<wbr></wbr>After</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#getMessagesBefore" class="internal-link" title="tldr.tldr.getMessagesBefore">get<wbr></wbr>Messages<wbr></wbr>Before</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#getTranslatedMessage" class="internal-link" title="tldr.tldr.getTranslatedMessage">get<wbr></wbr>Translated<wbr></wbr>Message</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#minTwoCluster" class="internal-link" title="tldr.tldr.minTwoCluster">min<wbr></wbr>Two<wbr></wbr>Cluster</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#postionParameter" class="internal-link" title="tldr.tldr.postionParameter">postion<wbr></wbr>Parameter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#printCluster" class="internal-link" title="tldr.tldr.printCluster">print<wbr></wbr>Cluster</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#printSimilarityMatrix" class="internal-link" title="tldr.tldr.printSimilarityMatrix">print<wbr></wbr>Similarity<wbr></wbr>Matrix</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#quantityParameter" class="internal-link" title="tldr.tldr.quantityParameter">quantity<wbr></wbr>Parameter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#remove_non_alphanumeric" class="internal-link" title="tldr.tldr.remove_non_alphanumeric">remove<wbr></wbr>_non<wbr></wbr>_alphanumeric</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#sendSummarises" class="internal-link" title="tldr.tldr.sendSummarises">send<wbr></wbr>Summarises</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#similarity" class="internal-link" title="tldr.tldr.similarity">similarity</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#similarityAll" class="internal-link" title="tldr.tldr.similarityAll">similarity<wbr></wbr>All</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#summarize" class="internal-link" title="tldr.tldr.summarize">summarize</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#wardDistance" class="internal-link" title="tldr.tldr.wardDistance">ward<wbr></wbr>Distance</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#sentenceModel" class="internal-link" title="tldr.tldr.sentenceModel">sentence<wbr></wbr>Model</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#summarizer" class="internal-link" title="tldr.tldr.summarizer">summarizer</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Package</span>
+        <code><a href="index.html" class="internal-link" title="The parent of this module">tldr</a></code> 
+      </div>
+      
+      <div>
+        
+
+        <div class="childrenKindTitle">Modules</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.commands.html" class="internal-link" title="tldr.commands">commands</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.discordBot.html" class="internal-link" title="tldr.discordBot">discord<wbr></wbr>Bot</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.messageProcess.html" class="internal-link" title="tldr.messageProcess">message<wbr></wbr>Process</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.mod.html" class="internal-link" title="tldr.mod">mod</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.mood.html" class="internal-link" title="tldr.mood">mood</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.socialGraph.html" class="internal-link" title="tldr.socialGraph">social<wbr></wbr>Graph</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.tldr.html" class="internal-link" title="tldr.tldr">tldr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.utils.html" class="internal-link" title="tldr.utils">utils</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+        
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="module"><code><code><a href="index.html" class="internal-link">tldr</a></code><wbr></wbr>.<code><a href="tldr.tldr.html" class="internal-link" title="tldr.tldr">tldr</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          module documentation
+        </div>
+
+        <div class="extrasDocstring">
+          
+          <p></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="undocumented">Undocumented</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id14">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#cheated" class="internal-link" title="tldr.tldr.cheated">cheated</a></code></td>
+    <td>Clustering of messages with hierarchical ascending classification but pre-implemented so it's cheating :param corpus: list of str :return: None</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#clustering" class="internal-link" title="tldr.tldr.clustering">clustering</a></code></td>
+    <td>Clustering of messages with hierarchical ascending classification :param messages: list of discord.Message :param similarityMatrix: np.matrix :param quantity: str :param messageInitIndex: int :return: list of list of discord...</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#clusterSimilarity" class="internal-link" title="tldr.tldr.clusterSimilarity">cluster<wbr></wbr>Similarity</a></code></td>
+    <td>Compute the similarity between clusters :param similarityMatrix: np.matrix :param clusters: list of np.ndarray :return: np.matrix</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#cosine_distance" class="internal-link" title="tldr.tldr.cosine_distance">cosine<wbr></wbr>_distance</a></code></td>
+    <td>Compute the cosine distance between two lists of float :param list1: List of float :param list2: List of float :return: float</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#distance" class="internal-link" title="tldr.tldr.distance">distance</a></code></td>
+    <td>Compute the distance between two messages :param embeddingMessage1: np.ndarray :param embeddingMessage2: np.ndarray :return: Float</td>
+  </tr><tr class="function">
+    
+    <td>Async Function</td>
+    <td><code><a href="#doTldr" class="internal-link" title="tldr.tldr.doTldr">do<wbr></wbr>Tldr</a></code></td>
+    <td>Main function of the tldr command, call every function needed to summarize the chat :param bot: The bot :param message: The message that call the command :param messageToEdit: The message to edit with the summary :param quantity: The quantity of summary to send :param position: The position of the summary :param timeGap: The time gap between the summary :return: None...</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#dumpjsonMatrix" class="internal-link" title="tldr.tldr.dumpjsonMatrix">dumpjson<wbr></wbr>Matrix</a></code></td>
+    <td>Dump the similarity matrix in json Used to debug and test :param similarityMatrix: The similarity matrix :return: None</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#euclidean_distance" class="internal-link" title="tldr.tldr.euclidean_distance">euclidean<wbr></wbr>_distance</a></code></td>
+    <td>Compute the euclidean distance between two lists of float :param list1: List of float :param list2: List of float :return: float</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#findMinMatrix" class="internal-link" title="tldr.tldr.findMinMatrix">find<wbr></wbr>Min<wbr></wbr>Matrix</a></code></td>
+    <td>Find the minimum value of a matrix :param similarityMatrix: np.ndarray :return: int, int, float</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#getChatByTime" class="internal-link" title="tldr.tldr.getChatByTime">get<wbr></wbr>Chat<wbr></wbr>By<wbr></wbr>Time</a></code></td>
+    <td>Get messages from a channel around, after or before a message depending on the position parameter :param bot: Discord bot :param messageInit: Message around which we want to get the messages :param timeGap: Time gap in minutes :param positionParameter: Position parameter :return: List of messages, index of the messageInit in the list...</td>
+  </tr><tr class="function">
+    
+    <td>Async Function</td>
+    <td><code><a href="#getMessagesAfter" class="internal-link" title="tldr.tldr.getMessagesAfter">get<wbr></wbr>Messages<wbr></wbr>After</a></code></td>
+    <td>Coroutines to get messages after a message :param channel: Channel to get the messages :param message: Message after which we want to get the messages :param limit: Limit of messages to get :return: List of messages...</td>
+  </tr><tr class="function">
+    
+    <td>Async Function</td>
+    <td><code><a href="#getMessagesBefore" class="internal-link" title="tldr.tldr.getMessagesBefore">get<wbr></wbr>Messages<wbr></wbr>Before</a></code></td>
+    <td>Coroutines to get messages before a message :param channel: Channel to get the messages :param message: Message before which we want to get the messages :param limit: Limit of messages to get :return: List of messages...</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#getTranslatedMessage" class="internal-link" title="tldr.tldr.getTranslatedMessage">get<wbr></wbr>Translated<wbr></wbr>Message</a></code></td>
+    <td>create a list of translted messages :param messages: List of discord.Message :return: List of string</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#minTwoCluster" class="internal-link" title="tldr.tldr.minTwoCluster">min<wbr></wbr>Two<wbr></wbr>Cluster</a></code></td>
+    <td>Compute the distance between two clusters :param cluster1: list of int :param cluster2: list of int :param similarityMatrix: np.matrix :return: float</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#postionParameter" class="internal-link" title="tldr.tldr.postionParameter">postion<wbr></wbr>Parameter</a></code></td>
+    <td>Compute the postion parameter String to a tuple of boolean :param position: String of the position parameter :return: Tuple of boolean (above, below)</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#printCluster" class="internal-link" title="tldr.tldr.printCluster">print<wbr></wbr>Cluster</a></code></td>
+    <td>Print the clusters Used to debug and test :param clusters: The clusters :return: None</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#printSimilarityMatrix" class="internal-link" title="tldr.tldr.printSimilarityMatrix">print<wbr></wbr>Similarity<wbr></wbr>Matrix</a></code></td>
+    <td>Print the similarity matrix Used to debug and test :param similarityMatrix: The similarity matrix :return: None</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#quantityParameter" class="internal-link" title="tldr.tldr.quantityParameter">quantity<wbr></wbr>Parameter</a></code></td>
+    <td>Compute the quantity parameter String to a boolean :param quantity: String of the quantity parameter :return: Boolean</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#remove_non_alphanumeric" class="internal-link" title="tldr.tldr.remove_non_alphanumeric">remove<wbr></wbr>_non<wbr></wbr>_alphanumeric</a></code></td>
+    <td>Process text to remove very special characters :param text: String to process :return: Processed string</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#sendSummarises" class="internal-link" title="tldr.tldr.sendSummarises">send<wbr></wbr>Summarises</a></code></td>
+    <td>Send the summarises :param bot: discord.Client :param messageToEdit: discord.Message :param listSummarise: list of tuple of str and discord.Message :return: None</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#similarity" class="internal-link" title="tldr.tldr.similarity">similarity</a></code></td>
+    <td>More like a distance matrix, 0 = same message, 1 = totally different, -1 = not computed :param tokenMessages: list of list of string :param messages: list of discord.Message :return: np.matrix of size len(messages) x len(messages) and embedding of messages...</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#similarityAll" class="internal-link" title="tldr.tldr.similarityAll">similarity<wbr></wbr>All</a></code></td>
+    <td>More like a distance matrix, 0 = same message, 1 = totally different, -1 = not computed :param tokenMessages: list of list of string :param messages: list of discord.Message :return: np.matrix of size len(messages) x len(messages) and embedding of messages...</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#summarize" class="internal-link" title="tldr.tldr.summarize">summarize</a></code></td>
+    <td>Summarize Every cluster of messages :param messagesCluster: list of list of discord.Message :return: list of tuple of, Summary For one cluster and the first message of the cluster</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#wardDistance" class="internal-link" title="tldr.tldr.wardDistance">ward<wbr></wbr>Distance</a></code></td>
+    <td>Compute the Ward distance between two clusters :param cluster1: list of int :param cluster2: list of int :param similarityMatrix: np.matrix :return: float</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#sentenceModel" class="internal-link" title="tldr.tldr.sentenceModel">sentence<wbr></wbr>Model</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#summarizer" class="internal-link" title="tldr.tldr.summarizer">summarizer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basefunction">
+  
+  
+  <a name="tldr.tldr.cheated">
+    
+  </a>
+  <a name="cheated">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">cheated</span>(corpus):
+    
+    <a class="headerLink" href="#cheated" title="tldr.tldr.cheated">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Clustering of messages with hierarchical ascending classification but pre-implemented so it's cheating :param corpus: list of str :return: None</p>
+</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.clustering">
+    
+  </a>
+  <a name="clustering">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">clustering</span>(messages, similarityMatrix, quantity, messageInitIndex):
+    
+    <a class="headerLink" href="#clustering" title="tldr.tldr.clustering">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Clustering of messages with hierarchical ascending classification :param messages: list of discord.Message :param similarityMatrix: np.matrix :param quantity: str :param messageInitIndex: int :return: list of list of discord.Message</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">messages:</span><code>list[<wbr></wbr>discord.Message]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">similarity<wbr></wbr>Matrix:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quantity:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message<wbr></wbr>Init<wbr></wbr>Index:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>list[<wbr></wbr>list[<wbr></wbr>discord.Message]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.clusterSimilarity">
+    
+  </a>
+  <a name="clusterSimilarity">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">clusterSimilarity</span>(similarityMatrix, clusters):
+    
+    <a class="headerLink" href="#clusterSimilarity" title="tldr.tldr.clusterSimilarity">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute the similarity between clusters :param similarityMatrix: np.matrix :param clusters: list of np.ndarray :return: np.matrix</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">similarity<wbr></wbr>Matrix:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">clusters:</span><code>list[<wbr></wbr>np.ndarray]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.cosine_distance">
+    
+  </a>
+  <a name="cosine_distance">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">cosine_distance</span>(list1, list2):
+    
+    <a class="headerLink" href="#cosine_distance" title="tldr.tldr.cosine_distance">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute the cosine distance between two lists of float :param list1: List of float :param list2: List of float :return: float</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">list1:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">list2:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>np.float64</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.distance">
+    
+  </a>
+  <a name="distance">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">distance</span>(embeddingMessage1, embeddingMessage2):
+    
+    <a class="headerLink" href="#distance" title="tldr.tldr.distance">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute the distance between two messages :param embeddingMessage1: np.ndarray :param embeddingMessage2: np.ndarray :return: Float</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">embedding<wbr></wbr>Message1:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">embedding<wbr></wbr>Message2:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.doTldr">
+    
+  </a>
+  <a name="doTldr">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">doTldr</span>(bot, message, messageToEdit, quantity=<span class="rst-variable-quote">'</span><span class="rst-variable-string">one</span><span class="rst-variable-quote">'</span>, position=<span class="rst-variable-quote">'</span><span class="rst-variable-string">around</span><span class="rst-variable-quote">'</span>, timeGap=5):
+    
+    <a class="headerLink" href="#doTldr" title="tldr.tldr.doTldr">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Main function of the tldr command, call every function needed to summarize the chat :param bot: The bot :param message: The message that call the command :param messageToEdit: The message to edit with the summary :param quantity: The quantity of summary to send :param position: The position of the summary :param timeGap: The time gap between the summary :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot:</span><code>discord.Client</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message<wbr></wbr>To<wbr></wbr>Edit:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quantity:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">position:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">time<wbr></wbr>Gap:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.dumpjsonMatrix">
+    
+  </a>
+  <a name="dumpjsonMatrix">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">dumpjsonMatrix</span>(similarityMatrix):
+    
+    <a class="headerLink" href="#dumpjsonMatrix" title="tldr.tldr.dumpjsonMatrix">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Dump the similarity matrix in json Used to debug and test :param similarityMatrix: The similarity matrix :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">similarity<wbr></wbr>Matrix:</span><code>np.array</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.euclidean_distance">
+    
+  </a>
+  <a name="euclidean_distance">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">euclidean_distance</span>(list1, list2):
+    
+    <a class="headerLink" href="#euclidean_distance" title="tldr.tldr.euclidean_distance">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute the euclidean distance between two lists of float :param list1: List of float :param list2: List of float :return: float</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">list1:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">list2:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>float</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.findMinMatrix">
+    
+  </a>
+  <a name="findMinMatrix">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">findMinMatrix</span>(similarityMatrix):
+    
+    <a class="headerLink" href="#findMinMatrix" title="tldr.tldr.findMinMatrix">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Find the minimum value of a matrix :param similarityMatrix: np.ndarray :return: int, int, float</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">similarity<wbr></wbr>Matrix:</span><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>tuple[<wbr></wbr>int, <wbr></wbr>int, <wbr></wbr>float]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.getChatByTime">
+    
+  </a>
+  <a name="getChatByTime">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">getChatByTime</span>(bot, messageInit, timeGap, positionParameter=<span class="rst-variable-quote">'</span><span class="rst-variable-string">around</span><span class="rst-variable-quote">'</span>):
+    
+    <a class="headerLink" href="#getChatByTime" title="tldr.tldr.getChatByTime">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Get messages from a channel around, after or before a message depending on the position parameter :param bot: Discord bot :param messageInit: Message around which we want to get the messages :param timeGap: Time gap in minutes :param positionParameter: Position parameter :return: List of messages, index of the messageInit in the list</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot:</span><code>discord.Client</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message<wbr></wbr>Init:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">time<wbr></wbr>Gap:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">position<wbr></wbr>Parameter</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>tuple[<wbr></wbr>list, <wbr></wbr>int]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.getMessagesAfter">
+    
+  </a>
+  <a name="getMessagesAfter">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">getMessagesAfter</span>(channel, message, limit):
+    
+    <a class="headerLink" href="#getMessagesAfter" title="tldr.tldr.getMessagesAfter">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Coroutines to get messages after a message :param channel: Channel to get the messages :param message: Message after which we want to get the messages :param limit: Limit of messages to get :return: List of messages</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">channel:</span><code>discord.TextChannel</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">limit:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>list[<wbr></wbr>discord.Message]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.getMessagesBefore">
+    
+  </a>
+  <a name="getMessagesBefore">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">getMessagesBefore</span>(channel, message, limit):
+    
+    <a class="headerLink" href="#getMessagesBefore" title="tldr.tldr.getMessagesBefore">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Coroutines to get messages before a message :param channel: Channel to get the messages :param message: Message before which we want to get the messages :param limit: Limit of messages to get :return: List of messages</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">channel:</span><code>discord.TextChannel</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">limit:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>list[<wbr></wbr>discord.Message]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.getTranslatedMessage">
+    
+  </a>
+  <a name="getTranslatedMessage">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">getTranslatedMessage</span>(messages):
+    
+    <a class="headerLink" href="#getTranslatedMessage" title="tldr.tldr.getTranslatedMessage">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>create a list of translted messages :param messages: List of discord.Message :return: List of string</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">messages:</span><code>list[<wbr></wbr>discord.Message]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>list[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.minTwoCluster">
+    
+  </a>
+  <a name="minTwoCluster">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">minTwoCluster</span>(cluster1, cluster2, similarityMatrix):
+    
+    <a class="headerLink" href="#minTwoCluster" title="tldr.tldr.minTwoCluster">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute the distance between two clusters :param cluster1: list of int :param cluster2: list of int :param similarityMatrix: np.matrix :return: float</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>float</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.postionParameter">
+    
+  </a>
+  <a name="postionParameter">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">postionParameter</span>(position):
+    
+    <a class="headerLink" href="#postionParameter" title="tldr.tldr.postionParameter">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute the postion parameter String to a tuple of boolean :param position: String of the position parameter :return: Tuple of boolean (above, below)</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">position:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>tuple[<wbr></wbr>bool, <wbr></wbr>bool]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.printCluster">
+    
+  </a>
+  <a name="printCluster">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">printCluster</span>(clusters):
+    
+    <a class="headerLink" href="#printCluster" title="tldr.tldr.printCluster">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Print the clusters Used to debug and test :param clusters: The clusters :return: None</p>
+</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.printSimilarityMatrix">
+    
+  </a>
+  <a name="printSimilarityMatrix">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">printSimilarityMatrix</span>(similarityMatrix):
+    
+    <a class="headerLink" href="#printSimilarityMatrix" title="tldr.tldr.printSimilarityMatrix">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Print the similarity matrix Used to debug and test :param similarityMatrix: The similarity matrix :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">similarity<wbr></wbr>Matrix:</span><code>np.array</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.quantityParameter">
+    
+  </a>
+  <a name="quantityParameter">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">quantityParameter</span>(quantity):
+    
+    <a class="headerLink" href="#quantityParameter" title="tldr.tldr.quantityParameter">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute the quantity parameter String to a boolean :param quantity: String of the quantity parameter :return: Boolean</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quantity:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.remove_non_alphanumeric">
+    
+  </a>
+  <a name="remove_non_alphanumeric">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">remove_non_alphanumeric</span>(text):
+    
+    <a class="headerLink" href="#remove_non_alphanumeric" title="tldr.tldr.remove_non_alphanumeric">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Process text to remove very special characters :param text: String to process :return: Processed string</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.sendSummarises">
+    
+  </a>
+  <a name="sendSummarises">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">sendSummarises</span>(bot, messageToEdit, listSummarise):
+    
+    <a class="headerLink" href="#sendSummarises" title="tldr.tldr.sendSummarises">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Send the summarises :param bot: discord.Client :param messageToEdit: discord.Message :param listSummarise: list of tuple of str and discord.Message :return: None</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot:</span><code>discord.Client</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message<wbr></wbr>To<wbr></wbr>Edit:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">list<wbr></wbr>Summarise:</span><code>list[<wbr></wbr>tuple[<wbr></wbr>str, <wbr></wbr>discord.Message]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.similarity">
+    
+  </a>
+  <a name="similarity">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">similarity</span>(tokenMessages, messages):
+    
+    <a class="headerLink" href="#similarity" title="tldr.tldr.similarity">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>More like a distance matrix, 0 = same message, 1 = totally different, -1 = not computed :param tokenMessages: list of list of string :param messages: list of discord.Message :return: np.matrix of size len(messages) x len(messages) and embedding of messages</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">token<wbr></wbr>Messages:</span><code>list[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">messages:</span><code>list[<wbr></wbr>discord.Message]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.similarityAll">
+    
+  </a>
+  <a name="similarityAll">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">similarityAll</span>(tokenMessages, messages):
+    
+    <a class="headerLink" href="#similarityAll" title="tldr.tldr.similarityAll">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>More like a distance matrix, 0 = same message, 1 = totally different, -1 = not computed :param tokenMessages: list of list of string :param messages: list of discord.Message :return: np.matrix of size len(messages) x len(messages) and embedding of messages</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">token<wbr></wbr>Messages:</span><code>list[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">messages:</span><code>list[<wbr></wbr>discord.Message]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>np.ndarray</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.summarize">
+    
+  </a>
+  <a name="summarize">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">summarize</span>(messagesCluster):
+    
+    <a class="headerLink" href="#summarize" title="tldr.tldr.summarize">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Summarize Every cluster of messages :param messagesCluster: list of list of discord.Message :return: list of tuple of, Summary For one cluster and the first message of the cluster</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">messages<wbr></wbr>Cluster:</span><code>list[<wbr></wbr>list[<wbr></wbr>discord.Message]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>list[<wbr></wbr>tuple[<wbr></wbr>str, <wbr></wbr>discord.Message]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.tldr.wardDistance">
+    
+  </a>
+  <a name="wardDistance">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">wardDistance</span>(cluster1, cluster2, similarityMatrix):
+    
+    <a class="headerLink" href="#wardDistance" title="tldr.tldr.wardDistance">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute the Ward distance between two clusters :param cluster1: list of int :param cluster2: list of int :param similarityMatrix: np.matrix :return: float</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>float</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="tldr.tldr.sentenceModel">
+    
+  </a>
+  <a name="sentenceModel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">sentenceModel</span> =
+    
+    <a class="headerLink" href="#sentenceModel" title="tldr.tldr.sentenceModel">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="tldr.tldr.summarizer">
+    
+  </a>
+  <a name="summarizer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">summarizer</span> =
+    
+    <a class="headerLink" href="#summarizer" title="tldr.tldr.summarizer">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for tldr,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.9.1 at 2023-04-18 01:32:28.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

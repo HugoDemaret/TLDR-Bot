@@ -1,0 +1,1252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>tldr.discordBot.GuildData</title>
+    <meta name="generator" content="pydoctor 22.9.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          tldr <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="tldr.discordBot.GuildData.html" class="internal-link" title="This class"><wbr></wbr>Guild<wbr></wbr>Data</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="tldr.discordBot.GuildData.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#toDict" class="internal-link" title="tldr.discordBot.GuildData.toDict">to<wbr></wbr>Dict</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#badWords" class="internal-link" title="tldr.discordBot.GuildData.badWords">bad<wbr></wbr>Words</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#consentChannelId" class="internal-link" title="tldr.discordBot.GuildData.consentChannelId">consent<wbr></wbr>Channel<wbr></wbr>Id</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#consentMessageId" class="internal-link" title="tldr.discordBot.GuildData.consentMessageId">consent<wbr></wbr>Message<wbr></wbr>Id</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#displayName" class="internal-link" title="tldr.discordBot.GuildData.displayName">display<wbr></wbr>Name</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#emotionCheckMessages" class="internal-link" title="tldr.discordBot.GuildData.emotionCheckMessages">emotion<wbr></wbr>Check<wbr></wbr>Messages</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#id" class="internal-link" title="tldr.discordBot.GuildData.id">id</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#moderators" class="internal-link" title="tldr.discordBot.GuildData.moderators">moderators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#moodMessageDepth" class="internal-link" title="tldr.discordBot.GuildData.moodMessageDepth">mood<wbr></wbr>Message<wbr></wbr>Depth</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#moodMessageThreshold" class="internal-link" title="tldr.discordBot.GuildData.moodMessageThreshold">mood<wbr></wbr>Message<wbr></wbr>Threshold</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#moodRefreshTime" class="internal-link" title="tldr.discordBot.GuildData.moodRefreshTime">mood<wbr></wbr>Refresh<wbr></wbr>Time</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#moodResetTime" class="internal-link" title="tldr.discordBot.GuildData.moodResetTime">mood<wbr></wbr>Reset<wbr></wbr>Time</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#moods" class="internal-link" title="tldr.discordBot.GuildData.moods">moods</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#moodTraining" class="internal-link" title="tldr.discordBot.GuildData.moodTraining">mood<wbr></wbr>Training</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#muted_users" class="internal-link" title="tldr.discordBot.GuildData.muted_users">muted<wbr></wbr>_users</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#permGroup" class="internal-link" title="tldr.discordBot.GuildData.permGroup">perm<wbr></wbr>Group</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#permUser" class="internal-link" title="tldr.discordBot.GuildData.permUser">perm<wbr></wbr>User</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#prefix" class="internal-link" title="tldr.discordBot.GuildData.prefix">prefix</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#timedMoodRefreshes" class="internal-link" title="tldr.discordBot.GuildData.timedMoodRefreshes">timed<wbr></wbr>Mood<wbr></wbr>Refreshes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#tldrTimeGap" class="internal-link" title="tldr.discordBot.GuildData.tldrTimeGap">tldr<wbr></wbr>Time<wbr></wbr>Gap</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#userActive" class="internal-link" title="tldr.discordBot.GuildData.userActive">user<wbr></wbr>Active</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#userMessages" class="internal-link" title="tldr.discordBot.GuildData.userMessages">user<wbr></wbr>Messages</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#users" class="internal-link" title="tldr.discordBot.GuildData.users">users</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="tldr.discordBot.html" class="internal-link" title="The parent of this class">discord<wbr></wbr>Bot</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.discordBot.Bot.html" class="internal-link" title="tldr.discordBot.Bot"><wbr></wbr>Bot</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.discordBot.GuildData.html" class="internal-link" title="tldr.discordBot.GuildData"><wbr></wbr>Guild<wbr></wbr>Data</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.discordBot.html#main" class="internal-link" title="tldr.discordBot.main">main</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">tldr</a></code><wbr></wbr>.<code><a href="tldr.discordBot.html" class="internal-link" title="tldr.discordBot">discordBot</a></code><wbr></wbr>.<code><a href="tldr.discordBot.GuildData.html" class="internal-link" title="tldr.discordBot.GuildData">GuildData</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">GuildData</span>:</code></p>
+          <p><a href="classIndex.html#tldr.discordBot.GuildData">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="undocumented">Undocumented</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id4">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="tldr.discordBot.GuildData.__init__">__init__</a></code></td>
+    <td>Constructor :param id: the guild's ID :param prefix: the guild's prefix :param consentChannelId: id of the channel which contains the consent message :param consentMessageId: id of the consent message :param timedMoodRefreshes: True if server operates on time-based mood refreshes, False if it operates on message-based :param moodRefreshTime: time between two mood refreshes :param moodResetTime: time between two resets :param moodMessageThreshold: number of messages for mood to start computing :param moodMessageDepth: maximum number of messages considered for mood :param moodTraining: links userIDs to whether their messages will be used for training (defaults to True) :param tldrTimeGap: time between two messages to be considered as part of the same conversation, in minutes :param badWords: list of bad words :param permUser: list of users with permanent access to the bot :param permGroup: list of roles with permanent access to the bot :param muted_users: list of users who are muted...</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#toDict" class="internal-link" title="tldr.discordBot.GuildData.toDict">to<wbr></wbr>Dict</a></code></td>
+    <td>Returns a dict representation of the object :return: dict</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#badWords" class="internal-link" title="tldr.discordBot.GuildData.badWords">bad<wbr></wbr>Words</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#consentChannelId" class="internal-link" title="tldr.discordBot.GuildData.consentChannelId">consent<wbr></wbr>Channel<wbr></wbr>Id</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#consentMessageId" class="internal-link" title="tldr.discordBot.GuildData.consentMessageId">consent<wbr></wbr>Message<wbr></wbr>Id</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#displayName" class="internal-link" title="tldr.discordBot.GuildData.displayName">display<wbr></wbr>Name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#emotionCheckMessages" class="internal-link" title="tldr.discordBot.GuildData.emotionCheckMessages">emotion<wbr></wbr>Check<wbr></wbr>Messages</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#id" class="internal-link" title="tldr.discordBot.GuildData.id">id</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#moderators" class="internal-link" title="tldr.discordBot.GuildData.moderators">moderators</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#moodMessageDepth" class="internal-link" title="tldr.discordBot.GuildData.moodMessageDepth">mood<wbr></wbr>Message<wbr></wbr>Depth</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#moodMessageThreshold" class="internal-link" title="tldr.discordBot.GuildData.moodMessageThreshold">mood<wbr></wbr>Message<wbr></wbr>Threshold</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#moodRefreshTime" class="internal-link" title="tldr.discordBot.GuildData.moodRefreshTime">mood<wbr></wbr>Refresh<wbr></wbr>Time</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#moodResetTime" class="internal-link" title="tldr.discordBot.GuildData.moodResetTime">mood<wbr></wbr>Reset<wbr></wbr>Time</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#moods" class="internal-link" title="tldr.discordBot.GuildData.moods">moods</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#moodTraining" class="internal-link" title="tldr.discordBot.GuildData.moodTraining">mood<wbr></wbr>Training</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#muted_users" class="internal-link" title="tldr.discordBot.GuildData.muted_users">muted<wbr></wbr>_users</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#permGroup" class="internal-link" title="tldr.discordBot.GuildData.permGroup">perm<wbr></wbr>Group</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#permUser" class="internal-link" title="tldr.discordBot.GuildData.permUser">perm<wbr></wbr>User</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#prefix" class="internal-link" title="tldr.discordBot.GuildData.prefix">prefix</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#timedMoodRefreshes" class="internal-link" title="tldr.discordBot.GuildData.timedMoodRefreshes">timed<wbr></wbr>Mood<wbr></wbr>Refreshes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#tldrTimeGap" class="internal-link" title="tldr.discordBot.GuildData.tldrTimeGap">tldr<wbr></wbr>Time<wbr></wbr>Gap</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#userActive" class="internal-link" title="tldr.discordBot.GuildData.userActive">user<wbr></wbr>Active</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#userMessages" class="internal-link" title="tldr.discordBot.GuildData.userMessages">user<wbr></wbr>Messages</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#users" class="internal-link" title="tldr.discordBot.GuildData.users">users</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="tldr.discordBot.GuildData.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, id, prefix, consentChannelId, consentMessageId, timedMoodRefreshes, moodRefreshTime, moodResetTime, moodMessageThreshold, moodMessageDepth, moodTraining, tldrTimeGap, badWords, permUser, permGroup, muted_users, moderators):
+    
+    <a class="headerLink" href="#__init__" title="tldr.discordBot.GuildData.__init__">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Constructor :param id: the guild's ID :param prefix: the guild's prefix :param consentChannelId: id of the channel which contains the consent message :param consentMessageId: id of the consent message :param timedMoodRefreshes: True if server operates on time-based mood refreshes, False if it operates on message-based :param moodRefreshTime: time between two mood refreshes :param moodResetTime: time between two resets :param moodMessageThreshold: number of messages for mood to start computing :param moodMessageDepth: maximum number of messages considered for mood :param moodTraining: links userIDs to whether their messages will be used for training (defaults to True) :param tldrTimeGap: time between two messages to be considered as part of the same conversation, in minutes :param badWords: list of bad words :param permUser: list of users with permanent access to the bot :param permGroup: list of roles with permanent access to the bot :param muted_users: list of users who are muted</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="tldr.discordBot.GuildData.toDict">
+    
+  </a>
+  <a name="toDict">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">toDict</span>(self):
+    
+    <a class="headerLink" href="#toDict" title="tldr.discordBot.GuildData.toDict">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Returns a dict representation of the object :return: dict</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>dict</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.badWords">
+    
+  </a>
+  <a name="badWords">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">badWords</span> =
+    
+    <a class="headerLink" href="#badWords" title="tldr.discordBot.GuildData.badWords">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.consentChannelId">
+    
+  </a>
+  <a name="consentChannelId">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">consentChannelId</span> =
+    
+    <a class="headerLink" href="#consentChannelId" title="tldr.discordBot.GuildData.consentChannelId">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.consentMessageId">
+    
+  </a>
+  <a name="consentMessageId">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">consentMessageId</span> =
+    
+    <a class="headerLink" href="#consentMessageId" title="tldr.discordBot.GuildData.consentMessageId">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.displayName">
+    
+  </a>
+  <a name="displayName">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">displayName</span> =
+    
+    <a class="headerLink" href="#displayName" title="tldr.discordBot.GuildData.displayName">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.emotionCheckMessages">
+    
+  </a>
+  <a name="emotionCheckMessages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">emotionCheckMessages</span>: <code>dict[<wbr></wbr>int, <wbr></wbr>mood.Mood]</code> =
+    
+    <a class="headerLink" href="#emotionCheckMessages" title="tldr.discordBot.GuildData.emotionCheckMessages">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.id">
+    
+  </a>
+  <a name="id">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">id</span> =
+    
+    <a class="headerLink" href="#id" title="tldr.discordBot.GuildData.id">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.moderators">
+    
+  </a>
+  <a name="moderators">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">moderators</span> =
+    
+    <a class="headerLink" href="#moderators" title="tldr.discordBot.GuildData.moderators">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.moodMessageDepth">
+    
+  </a>
+  <a name="moodMessageDepth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">moodMessageDepth</span> =
+    
+    <a class="headerLink" href="#moodMessageDepth" title="tldr.discordBot.GuildData.moodMessageDepth">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.moodMessageThreshold">
+    
+  </a>
+  <a name="moodMessageThreshold">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">moodMessageThreshold</span> =
+    
+    <a class="headerLink" href="#moodMessageThreshold" title="tldr.discordBot.GuildData.moodMessageThreshold">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.moodRefreshTime">
+    
+  </a>
+  <a name="moodRefreshTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">moodRefreshTime</span> =
+    
+    <a class="headerLink" href="#moodRefreshTime" title="tldr.discordBot.GuildData.moodRefreshTime">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.moodResetTime">
+    
+  </a>
+  <a name="moodResetTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">moodResetTime</span> =
+    
+    <a class="headerLink" href="#moodResetTime" title="tldr.discordBot.GuildData.moodResetTime">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.moods">
+    
+  </a>
+  <a name="moods">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">moods</span>: <code>dict[<wbr></wbr>int, <wbr></wbr>mood.Mood]</code> =
+    
+    <a class="headerLink" href="#moods" title="tldr.discordBot.GuildData.moods">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.moodTraining">
+    
+  </a>
+  <a name="moodTraining">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">moodTraining</span>: <code>dict[<wbr></wbr>int, <wbr></wbr>bool]</code> =
+    
+    <a class="headerLink" href="#moodTraining" title="tldr.discordBot.GuildData.moodTraining">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.muted_users">
+    
+  </a>
+  <a name="muted_users">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">muted_users</span> =
+    
+    <a class="headerLink" href="#muted_users" title="tldr.discordBot.GuildData.muted_users">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.permGroup">
+    
+  </a>
+  <a name="permGroup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">permGroup</span> =
+    
+    <a class="headerLink" href="#permGroup" title="tldr.discordBot.GuildData.permGroup">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.permUser">
+    
+  </a>
+  <a name="permUser">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">permUser</span> =
+    
+    <a class="headerLink" href="#permUser" title="tldr.discordBot.GuildData.permUser">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.prefix">
+    
+  </a>
+  <a name="prefix">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">prefix</span> =
+    
+    <a class="headerLink" href="#prefix" title="tldr.discordBot.GuildData.prefix">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.timedMoodRefreshes">
+    
+  </a>
+  <a name="timedMoodRefreshes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">timedMoodRefreshes</span> =
+    
+    <a class="headerLink" href="#timedMoodRefreshes" title="tldr.discordBot.GuildData.timedMoodRefreshes">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.tldrTimeGap">
+    
+  </a>
+  <a name="tldrTimeGap">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">tldrTimeGap</span> =
+    
+    <a class="headerLink" href="#tldrTimeGap" title="tldr.discordBot.GuildData.tldrTimeGap">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.userActive">
+    
+  </a>
+  <a name="userActive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">userActive</span>: <code>dict[<wbr></wbr>int, <wbr></wbr>bool]</code> =
+    
+    <a class="headerLink" href="#userActive" title="tldr.discordBot.GuildData.userActive">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.userMessages">
+    
+  </a>
+  <a name="userMessages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">userMessages</span>: <code>dict[<wbr></wbr>int, <wbr></wbr>list[<wbr></wbr>str]]</code> =
+    
+    <a class="headerLink" href="#userMessages" title="tldr.discordBot.GuildData.userMessages">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="tldr.discordBot.GuildData.users">
+    
+  </a>
+  <a name="users">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">users</span>: <code>set</code> =
+    
+    <a class="headerLink" href="#users" title="tldr.discordBot.GuildData.users">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for tldr,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.9.1 at 2023-04-18 01:32:28.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

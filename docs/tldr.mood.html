@@ -1,0 +1,1044 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>tldr.mood</title>
+    <meta name="generator" content="pydoctor 22.9.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          tldr <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code class="thisobject"><a href="tldr.mood.html" class="internal-link" title="This module">mood</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.mood.Mood.html" class="internal-link" title="tldr.mood.Mood"><wbr></wbr>Mood</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#addCSV" class="internal-link" title="tldr.mood.addCSV">add<wbr></wbr>CSV</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#createRoles" class="internal-link" title="tldr.mood.createRoles">create<wbr></wbr>Roles</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#getEmotions" class="internal-link" title="tldr.mood.getEmotions">get<wbr></wbr>Emotions</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#getMood" class="internal-link" title="tldr.mood.getMood">get<wbr></wbr>Mood</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#messageProcessing" class="internal-link" title="tldr.mood.messageProcessing">message<wbr></wbr>Processing</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#processMessage" class="internal-link" title="tldr.mood.processMessage">process<wbr></wbr>Message</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#refreshMood" class="internal-link" title="tldr.mood.refreshMood">refresh<wbr></wbr>Mood</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#refreshMoods" class="internal-link" title="tldr.mood.refreshMoods">refresh<wbr></wbr>Moods</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#removeRoles" class="internal-link" title="tldr.mood.removeRoles">remove<wbr></wbr>Roles</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#resetMood" class="internal-link" title="tldr.mood.resetMood">reset<wbr></wbr>Mood</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#resetMoods" class="internal-link" title="tldr.mood.resetMoods">reset<wbr></wbr>Moods</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#resetRoles" class="internal-link" title="tldr.mood.resetRoles">reset<wbr></wbr>Roles</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#rolesPresent" class="internal-link" title="tldr.mood.rolesPresent">roles<wbr></wbr>Present</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#setDatasetCollectionMessage" class="internal-link" title="tldr.mood.setDatasetCollectionMessage">set<wbr></wbr>Dataset<wbr></wbr>Collection<wbr></wbr>Message</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#timeProcessing" class="internal-link" title="tldr.mood.timeProcessing">time<wbr></wbr>Processing</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#updateMoods" class="internal-link" title="tldr.mood.updateMoods">update<wbr></wbr>Moods</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#classifier" class="internal-link" title="tldr.mood.classifier">classifier</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Package</span>
+        <code><a href="index.html" class="internal-link" title="The parent of this module">tldr</a></code> 
+      </div>
+      
+      <div>
+        
+
+        <div class="childrenKindTitle">Modules</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.commands.html" class="internal-link" title="tldr.commands">commands</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.discordBot.html" class="internal-link" title="tldr.discordBot">discord<wbr></wbr>Bot</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.messageProcess.html" class="internal-link" title="tldr.messageProcess">message<wbr></wbr>Process</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.mod.html" class="internal-link" title="tldr.mod">mod</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.mood.html" class="internal-link" title="tldr.mood">mood</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.socialGraph.html" class="internal-link" title="tldr.socialGraph">social<wbr></wbr>Graph</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.tldr.html" class="internal-link" title="tldr.tldr">tldr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="tldr.utils.html" class="internal-link" title="tldr.utils">utils</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+        
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="module"><code><code><a href="index.html" class="internal-link">tldr</a></code><wbr></wbr>.<code><a href="tldr.mood.html" class="internal-link" title="tldr.mood">mood</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          module documentation
+        </div>
+
+        <div class="extrasDocstring">
+          
+          <p></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="undocumented">Undocumented</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id9">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="tldr.mood.Mood.html" class="internal-link" title="tldr.mood.Mood"><wbr></wbr>Mood</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#addCSV" class="internal-link" title="tldr.mood.addCSV">add<wbr></wbr>CSV</a></code></td>
+    <td>Adds the message and its emotion to the csv file of the emotions dataset :param messageContent: the message :param emotion: the emotion</td>
+  </tr><tr class="function">
+    
+    <td>Async Function</td>
+    <td><code><a href="#createRoles" class="internal-link" title="tldr.mood.createRoles">create<wbr></wbr>Roles</a></code></td>
+    <td>Creates all the mood roles on the guild :param bot: the bot :param guild: the guild to put the roles in</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#getEmotions" class="internal-link" title="tldr.mood.getEmotions">get<wbr></wbr>Emotions</a></code></td>
+    <td>Gets the emotions associated to a list of messages via a transformer :param messages: the list of messages to extract the emotions from :return: a list of dictionaries, each containing a "label" (emotion name) and "score" (probability of the emotion)...</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#getMood" class="internal-link" title="tldr.mood.getMood">get<wbr></wbr>Mood</a></code></td>
+    <td>Gets the mood associated to a list of messages :param messages: the list of messages :return: the mood associated to the list of messages</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#messageProcessing" class="internal-link" title="tldr.mood.messageProcessing">message<wbr></wbr>Processing</a></code></td>
+    <td>Processes a message when guild mood refreshes based on messages :param bot: the bot :param message: the message to process</td>
+  </tr><tr class="function">
+    
+    <td>Async Function</td>
+    <td><code><a href="#processMessage" class="internal-link" title="tldr.mood.processMessage">process<wbr></wbr>Message</a></code></td>
+    <td>Processes a message for mood computation and sets up the message collection system for the dataset if needed :param bot: the bot :param message: the message to be processed</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#refreshMood" class="internal-link" title="tldr.mood.refreshMood">refresh<wbr></wbr>Mood</a></code></td>
+    <td>Refreshes the mood of a specific member of a specific guild :param bot: the bot :param userID: the id of the guild member :param guildID: the id of the guild</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#refreshMoods" class="internal-link" title="tldr.mood.refreshMoods">refresh<wbr></wbr>Moods</a></code></td>
+    <td>Refreshes the mood of every active user from the specified guild :param bot: the bot :param guildID: the id of the guild to refresh the users' moods of</td>
+  </tr><tr class="function">
+    
+    <td>Async Function</td>
+    <td><code><a href="#removeRoles" class="internal-link" title="tldr.mood.removeRoles">remove<wbr></wbr>Roles</a></code></td>
+    <td>Removes all the mood roles from the guild :param bot: the bot :param guild: the guild</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#resetMood" class="internal-link" title="tldr.mood.resetMood">reset<wbr></wbr>Mood</a></code></td>
+    <td>Resets the mood of a specific member of a specific guild :param bot: the bot :param userID: the id of the member :param guildID: the id of the guild</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#resetMoods" class="internal-link" title="tldr.mood.resetMoods">reset<wbr></wbr>Moods</a></code></td>
+    <td>Resets the moods of the inactive users from the specified guild :param bot: the bot :param guildID: the id of the guild</td>
+  </tr><tr class="function">
+    
+    <td>Async Function</td>
+    <td><code><a href="#resetRoles" class="internal-link" title="tldr.mood.resetRoles">reset<wbr></wbr>Roles</a></code></td>
+    <td>Removes mood roles from all users on the guild :param bot: the bot :param guild: the guild</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#rolesPresent" class="internal-link" title="tldr.mood.rolesPresent">roles<wbr></wbr>Present</a></code></td>
+    <td>Checks if the mood roles are already on the guild :param guild: the guild to check :return: True if the roles are present, False if not</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#setDatasetCollectionMessage" class="internal-link" title="tldr.mood.setDatasetCollectionMessage">set<wbr></wbr>Dataset<wbr></wbr>Collection<wbr></wbr>Message</a></code></td>
+    <td>Sends the message to collect the user's message and emotion for the dataset :param bot: the bot :param message: the message</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#timeProcessing" class="internal-link" title="tldr.mood.timeProcessing">time<wbr></wbr>Processing</a></code></td>
+    <td>Processes a message when guild mood refreshes are based on time :param bot: the bot :param message: the message to process</td>
+  </tr><tr class="function">
+    
+    <td>Async Function</td>
+    <td><code><a href="#updateMoods" class="internal-link" title="tldr.mood.updateMoods">update<wbr></wbr>Moods</a></code></td>
+    <td>Processes all the required mood updates from the specific minute (see bot.moodUpdates) Called every minute by bot.timeLoop() :param bot: the bot</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#classifier" class="internal-link" title="tldr.mood.classifier">classifier</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basefunction">
+  
+  
+  <a name="tldr.mood.addCSV">
+    
+  </a>
+  <a name="addCSV">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">addCSV</span>(messageContent, emotion):
+    
+    <a class="headerLink" href="#addCSV" title="tldr.mood.addCSV">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Adds the message and its emotion to the csv file of the emotions dataset :param messageContent: the message :param emotion: the emotion</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message<wbr></wbr>Content:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">emotion:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.createRoles">
+    
+  </a>
+  <a name="createRoles">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">createRoles</span>(bot, guild):
+    
+    <a class="headerLink" href="#createRoles" title="tldr.mood.createRoles">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Creates all the mood roles on the guild :param bot: the bot :param guild: the guild to put the roles in</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild:</span><code>discord.Guild</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.getEmotions">
+    
+  </a>
+  <a name="getEmotions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getEmotions</span>(messages):
+    
+    <a class="headerLink" href="#getEmotions" title="tldr.mood.getEmotions">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Gets the emotions associated to a list of messages via a transformer :param messages: the list of messages to extract the emotions from :return: a list of dictionaries, each containing a "label" (emotion name) and "score" (probability of the emotion)</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">messages:</span><code>list[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>list[<wbr></wbr>dict[<wbr></wbr>str:float]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.getMood">
+    
+  </a>
+  <a name="getMood">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">getMood</span>(messages):
+    
+    <a class="headerLink" href="#getMood" title="tldr.mood.getMood">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Gets the mood associated to a list of messages :param messages: the list of messages :return: the mood associated to the list of messages</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">messages:</span><code>list[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="tldr.mood.Mood.html" class="internal-link" title="tldr.mood.Mood">Mood</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.messageProcessing">
+    
+  </a>
+  <a name="messageProcessing">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">messageProcessing</span>(bot, message):
+    
+    <a class="headerLink" href="#messageProcessing" title="tldr.mood.messageProcessing">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Processes a message when guild mood refreshes based on messages :param bot: the bot :param message: the message to process</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.processMessage">
+    
+  </a>
+  <a name="processMessage">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">processMessage</span>(bot, message):
+    
+    <a class="headerLink" href="#processMessage" title="tldr.mood.processMessage">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Processes a message for mood computation and sets up the message collection system for the dataset if needed :param bot: the bot :param message: the message to be processed</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.refreshMood">
+    
+  </a>
+  <a name="refreshMood">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">refreshMood</span>(bot, userID, guildID):
+    
+    <a class="headerLink" href="#refreshMood" title="tldr.mood.refreshMood">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Refreshes the mood of a specific member of a specific guild :param bot: the bot :param userID: the id of the guild member :param guildID: the id of the guild</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user<wbr></wbr>ID:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild<wbr></wbr>ID:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.refreshMoods">
+    
+  </a>
+  <a name="refreshMoods">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">refreshMoods</span>(bot, guildID):
+    
+    <a class="headerLink" href="#refreshMoods" title="tldr.mood.refreshMoods">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Refreshes the mood of every active user from the specified guild :param bot: the bot :param guildID: the id of the guild to refresh the users' moods of</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild<wbr></wbr>ID:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.removeRoles">
+    
+  </a>
+  <a name="removeRoles">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">removeRoles</span>(bot, guild):
+    
+    <a class="headerLink" href="#removeRoles" title="tldr.mood.removeRoles">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Removes all the mood roles from the guild :param bot: the bot :param guild: the guild</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild:</span><code>discord.Guild</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.resetMood">
+    
+  </a>
+  <a name="resetMood">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">resetMood</span>(bot, userID, guildID):
+    
+    <a class="headerLink" href="#resetMood" title="tldr.mood.resetMood">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Resets the mood of a specific member of a specific guild :param bot: the bot :param userID: the id of the member :param guildID: the id of the guild</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user<wbr></wbr>ID:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild<wbr></wbr>ID:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.resetMoods">
+    
+  </a>
+  <a name="resetMoods">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">resetMoods</span>(bot, guildID):
+    
+    <a class="headerLink" href="#resetMoods" title="tldr.mood.resetMoods">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Resets the moods of the inactive users from the specified guild :param bot: the bot :param guildID: the id of the guild</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild<wbr></wbr>ID:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.resetRoles">
+    
+  </a>
+  <a name="resetRoles">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">resetRoles</span>(bot, guild):
+    
+    <a class="headerLink" href="#resetRoles" title="tldr.mood.resetRoles">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Removes mood roles from all users on the guild :param bot: the bot :param guild: the guild</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild:</span><code>discord.Guild</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.rolesPresent">
+    
+  </a>
+  <a name="rolesPresent">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">rolesPresent</span>(guild):
+    
+    <a class="headerLink" href="#rolesPresent" title="tldr.mood.rolesPresent">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Checks if the mood roles are already on the guild :param guild: the guild to check :return: True if the roles are present, False if not</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">guild:</span><code>discord.Guild</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.setDatasetCollectionMessage">
+    
+  </a>
+  <a name="setDatasetCollectionMessage">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">setDatasetCollectionMessage</span>(bot, message):
+    
+    <a class="headerLink" href="#setDatasetCollectionMessage" title="tldr.mood.setDatasetCollectionMessage">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sends the message to collect the user's message and emotion for the dataset :param bot: the bot :param message: the message</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.timeProcessing">
+    
+  </a>
+  <a name="timeProcessing">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">def</span> <span class="py-defname">timeProcessing</span>(bot, message):
+    
+    <a class="headerLink" href="#timeProcessing" title="tldr.mood.timeProcessing">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Processes a message when guild mood refreshes are based on time :param bot: the bot :param message: the message to process</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bot</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code>discord.Message</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="tldr.mood.updateMoods">
+    
+  </a>
+  <a name="updateMoods">
+    
+  </a>
+  <div class="functionHeader">
+    @printExceptions<br />
+    <span class="py-keyword">async def</span> <span class="py-defname">updateMoods</span>(bot):
+    
+    <a class="headerLink" href="#updateMoods" title="tldr.mood.updateMoods">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Processes all the required mood updates from the specific minute (see bot.moodUpdates) Called every minute by bot.timeLoop() :param bot: the bot</p>
+</div>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="tldr.mood.classifier">
+    
+  </a>
+  <a name="classifier">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">classifier</span> =
+    
+    <a class="headerLink" href="#classifier" title="tldr.mood.classifier">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for tldr,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.9.1 at 2023-04-18 01:32:28.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
