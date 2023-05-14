@@ -6,9 +6,9 @@ TL;DR is a powerful Discord bot that leverages natural language processing to en
 
 - Conversation Summarisation: TL;DR uses advanced natural language processing techniques to generate concise summaries of conversations, allowing you to quickly grasp the main points without reading through lengthy threads.
 
-- Mood Detection: By analysing text content, TL;DR can detect the mood of users, helping you understand the overall sentiment within your server. This feature enables you to address any potential issues promptly.
+- Mood Detection: By analysing text content, TL;DR can detect the mood of users and display it in a clear way, crossing the barrier between IRL and textual conversations. This feasure is most helpful for people who struggle to detect emotion in textual content.
 
-- Social Graph Generation: TL;DR generates a social graph based on user interactions, providing insights into the network of relationships within your server. Visualisse connections and identify key influencers to better understand your community.
+- Social Graph Generation: TL;DR generates a social graph based on user interactions, providing insights into the network of relationships within your server. Visualise connections and identify key influencers to better understand your community.
 
 - Automatic Moderation: Utilising sophisticated algorithms, TL;DR helps you maintain a safe and welcoming environment by automatically moderating your server. Set up custom rules and let the bot handle repetitive tasks, ensuring peace of mind for administrators.
 
