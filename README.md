@@ -1,6 +1,6 @@
 # TL;DR (Too Long; Didn't Read) Discord Bot
 
-TL;DR is a powerful Discord bot that leverages natural language processing to enhance your server experience. With TL;DR, you can easily summarize conversations, detect users' moods, create a social graph of your server, and automate moderation tasks. Whether you're looking to streamline discussions or maintain a healthy server environment, TL;DR has got you covered.
+TL;DR is a powerful Discord bot that leverages natural language processing to enhance your server experience. With TL;DR, you can easily summarise conversations, detect users' moods, create a social graph of your server, and automate moderation tasks. Whether you're looking to streamline discussions or maintain a healthy server environment, TL;DR has got you covered.
 
 ## Features
 
