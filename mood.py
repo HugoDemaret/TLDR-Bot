@@ -2,11 +2,8 @@ import asyncio
 import csv
 import enum
 import os
-import time
 
 import discord
-from dotenv import load_dotenv
-from huggingface_hub import login
 from transformers import pipeline
 
 from utils import printExceptions
@@ -46,14 +43,14 @@ class Mood(enum.Enum):
         self.position = position  # Position in a list of each mood
         self.emoji = emoji  # Emoji associated to the mood
 
-    ANGRY       = ("angry",     "anger",        discord.Colour.from_str("#ff3939"), 0, "😡")
-    DISGUSTED   = ("disgusted", "disgust",      discord.Colour.from_str("#ee8100"), 1, "🤢")
-    AFRAID      = ("afraid",    "fear",         discord.Colour.from_str("#00b7df"), 2, "😱")
-    HAPPY       = ("happy",     "joy",          discord.Colour.from_str("#28d025"), 3, "😄")
-    NEUTRAL     = ("neutral",   "neutral",      discord.Colour.from_str("#aabcc0"), 4, "😐")
-    SAD         = ("sad",       "sadness",      discord.Colour.from_str("#8d47ff"), 5, "😢")
-    SURPRISED   = ("surprised", "surprise",     discord.Colour.from_str("#ffca0e"), 6, "😮")
-    SLEEPY      = ("sleepy",    "sleepiness",   discord.Colour.from_str("#ff5cb8"), 7, "😴")
+    ANGRY = ("angry", "anger", discord.Colour.from_str("#ff3939"), 0, "😡")
+    DISGUSTED = ("disgusted", "disgust", discord.Colour.from_str("#ee8100"), 1, "🤢")
+    AFRAID = ("afraid", "fear", discord.Colour.from_str("#00b7df"), 2, "😱")
+    HAPPY = ("happy", "joy", discord.Colour.from_str("#28d025"), 3, "😄")
+    NEUTRAL = ("neutral", "neutral", discord.Colour.from_str("#aabcc0"), 4, "😐")
+    SAD = ("sad", "sadness", discord.Colour.from_str("#8d47ff"), 5, "😢")
+    SURPRISED = ("surprised", "surprise", discord.Colour.from_str("#ffca0e"), 6, "😮")
+    SLEEPY = ("sleepy", "sleepiness", discord.Colour.from_str("#ff5cb8"), 7, "😴")
 
 
 # •==================•
@@ -80,11 +77,10 @@ async def createRoles(bot, guild: discord.Guild) -> None:
     :param bot: the bot
     :param guild: the guild to put the roles in
     """
-    print("i be here")
     # Creation of all the roles
     for mood in Mood:
         asyncio.run_coroutine_threadsafe(guild.create_role(name=mood.moodName, colour=mood.colour, mentionable=True), bot.loop).result()
-    print("heya da roles are created but no order sadge")
+
     # Reordering of roles positions, mood roles need to be at the top so the colouring is not overshadowed
     moodRoleNames = set([mood.moodName for mood in Mood])
     positions = {}
@@ -98,10 +94,8 @@ async def createRoles(bot, guild: discord.Guild) -> None:
                               [mood.position for mood in Mood if mood.moodName == role.name][0]
         else:  # Other coloured roles at the end (not to overshadow mood roles colouring)
             positions[role] = role.position
-    print("positions computed")
 
     asyncio.run_coroutine_threadsafe(guild.edit_role_positions(positions), bot.loop)
-    print("Reordered yay")
 
 
 @printExceptions
@@ -115,6 +109,21 @@ async def removeRoles(bot, guild: discord.Guild) -> None:
     for role in guild.roles:
         if role.name in moodNames:
             asyncio.run_coroutine_threadsafe(role.delete(), bot.loop).result()
+
+
+@printExceptions
+async def resetRoles(bot, guild: discord.Guild) -> None:
+    """
+    Removes mood roles from all users on the guild
+    :param bot: the bot
+    :param guild: the guild
+    """
+    moodNames = [mood.moodName for mood in Mood]
+    moodRoles = [role for role in guild.roles if role.name in moodNames]
+
+    for role in moodRoles:
+        for member in role.members:
+            asyncio.run_coroutine_threadsafe(member.remove_roles(role), bot.loop).result()
 
 
 # •=================•
@@ -237,7 +246,7 @@ def resetMood(bot, userID: int, guildID: int) -> None:
 # •======================•
 #    MESSAGE PROCESSING
 # •======================•
-@printExceptions
+
 def getEmotions(messages: list[str]) -> list[dict[str: float]]:
     """
     Gets the emotions associated to a list of messages via a transformer
@@ -245,12 +254,21 @@ def getEmotions(messages: list[str]) -> list[dict[str: float]]:
     :return: a list of dictionaries, each containing a "label" (emotion name) and "score" (probability of the emotion)
     """
     try:
-        return classifier(". ".join(messages))  # Join messages together with a full stop in between to create sentences (almost no discord message ends with a full stop)
+        return classifier(". ".join(messages))[0]  # Join messages together with a full stop in between to create sentences (almost no discord message ends with a full stop)
     except:  # Message is too long, we split it up and average the results
+        if len(messages) == 1:  # If there is only one message, we split it into sentences
+            messages = messages[0].split(r'(?<=[.!?]) +')
+
+            if len(messages) == 1:  # If there is only one sentence, we return a neutral emotion
+                emotionNames = [mood.emotionName for mood in Mood]
+                return [{"label": label, "score": 0} if label != "neutral" else {"label": "neutral", "score": 1} for label in emotionNames]
+
+        # If there are multiple messages/sentences, we split the list in half and average the results
         emotions1 = getEmotions(messages[:len(messages) // 2])
         emotions2 = getEmotions(messages[len(messages) // 2:])
+
         return [{"label": emotions1[i]["label"], "score": (emotions1[i]["score"] + emotions2[i]["score"]) / 2} for i in
-                range(len(Mood))]
+                range(len(Mood) - 1)]
 
 
 @printExceptions
@@ -260,7 +278,7 @@ def getMood(messages: list[str]) -> Mood:
     :param messages: the list of messages
     :return: the mood associated to the list of messages
     """
-    emotions = getEmotions(messages)[0]
+    emotions = getEmotions(messages)
     maxScore = 0
     maxEmotion = ""
 
@@ -345,6 +363,12 @@ def addCSV(messageContent: str, emotion: str) -> None:
     :param messageContent: the message
     :param emotion: the emotion
     """
+    # Create the file if it doesn't exist
+    if not os.path.exists("data/emotion_dataset.csv"):
+        with open("data/emotion_dataset.csv", "w") as f:
+            writer = csv.writer(f)
+            writer.writerow(["text", "emotion"])
+
     with open("data/emotion_dataset.csv", "a") as csvFile:
         writer = csv.writer(csvFile)
         writer.writerow([messageContent, emotion])

@@ -2,8 +2,8 @@ from os import getenv
 
 from dotenv import load_dotenv
 
-from commands import *
 import socialGraph
+from commands import *
 
 
 async def on_messageDiscord(bot, message: discord.Message, guildData) -> None:
@@ -113,7 +113,7 @@ async def on_messageSocialGraph(bot, message, guildData) -> None:
     if message.content.startswith(guildData.prefix):
         await socialGraphCommand(bot, message, guildData)
         return
-    #if message is a reply
+    # if message is a reply
     repliedMessage = None
     if message.type == discord.MessageType.reply:
         repliedMessage = await message.channel.fetch_message(message.reference.message_id)
@@ -140,7 +140,7 @@ def on_messageAutoMod(bot, message, guildData):
         mots = message.clean_content[len(guildData.prefix):].lower().split()
         match mots[0]:
             case "moderatesettings":
-                moderatesettings(bot, message, guildData,mots)
+                moderatesettings(bot, message, guildData, mots)
                 bot.save()
                 return
             case "muteuser":
@@ -150,6 +150,6 @@ def on_messageAutoMod(bot, message, guildData):
                 return
             case "unmuteuser":
                 unmuteUser(bot, message, guildData, mots)
-                #asyncio.run_coroutine_threadsafe(unmuteuser(bot, message, guildData), bot.autoModLoop)
+                # asyncio.run_coroutine_threadsafe(unmuteuser(bot, message, guildData), bot.autoModLoop)
                 bot.save()
                 return

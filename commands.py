@@ -1,14 +1,14 @@
 import asyncio
 import csv
+import os
 
 import discord
 from discord import Embed
 from matplotlib import pyplot as plt
 
-import tldr
-import mood
 import mod
-import socialGraph
+import mood
+import tldr
 from utils import printExceptions
 
 
@@ -318,6 +318,7 @@ def helpCommand(bot, message, guildData, mots):
                         description = f"""
                             Changes the time between two mood refreshes.
                             The new time can not exceed 180 minutes.
+                            Change will take place from next refresh onwards.
 
                             You must be a server administrator to use this command.
 
@@ -335,6 +336,7 @@ def helpCommand(bot, message, guildData, mots):
                         description = f"""
                             Changes the time between two mood resets.
                             The new time can not exceed 180 minutes.
+                            Change will take place from next reset onwards.
                             During a mood reset, every user which did not send a message since the last reset will lose their mood. This allows the moods not to be too outdated.
 
                             You must be a server administrator to use this command.
@@ -367,7 +369,7 @@ def helpCommand(bot, message, guildData, mots):
                         description = f"""
                             Changes the maximum number of last messages considered in order to compute a user's mood.
                             The higher this value is the more precise their mood will be. 
-                            However a number of messages too high slows down the reactivity of the mood change when a user's mood changes.
+                            However a number of messages too high slows down the reactivity of the role change when a user's mood changes.
 
                             You must be a server administrator to use this command.
 
@@ -699,16 +701,6 @@ def helpCommand(bot, message, guildData, mots):
                     **Examples:**
                     • `{guildData.prefix}kick @user`
                     """
-        case "getinfo":
-            if len(mots) == 2:
-                title = "getinfo <user>"
-                description = f"""
-                    Gets the info on the user and his/her infractions 
-                    \tYou must be a server administrator or a user with an authorized role to use this command.
-                    \tThe user must be mentioned, not just their name.
-                    **Examples:**
-                    • `{guildData.prefix}getinfo @user`
-                    """
 
         case _:
             bot.send_message(
@@ -886,14 +878,16 @@ def moods(bot, message, guildData) -> None:
         plt.text(bar.get_x() + bar.get_width() / 2, height, height, ha='center', va='bottom')
     # Saves the bar chart
     plt.title(f"Number of users per mood on {message.guild.name}")
-    plt.savefig("mood_bar.png")
+    plt.savefig("image/mood_bar.png")
     plt.close()
+
     # Suppresses mood values at 0
     while 0 in count:
         index = count.index(0)
         count.pop(index)
         names.pop(index)
         colours.pop(index)
+
     # Percentage values for the pie chart
     percentages = [round(100 * count[i] / sum(count), 2) for i in range(len(count))]
     # Creates the pie chart
@@ -901,7 +895,7 @@ def moods(bot, message, guildData) -> None:
     ax.pie(percentages, labels=names, colors=colours, autopct='%1.1f%%', startangle=90)
     # Saves the pie chart
     plt.title(f"Percentage of users per mood on {message.guild.name}")
-    plt.savefig("mood_pie.png")
+    plt.savefig("image/mood_pie.png")
     plt.close()
     # Displays the images on Discord
     asyncio.run_coroutine_threadsafe(message.channel.send("Here's some charts about this server's moods!", files=(
@@ -1013,7 +1007,7 @@ def moodsettings_refreshtime(bot, message, guildData, mots) -> None:
         return
     guildData.moodRefreshTime = newValue
     bot.send_message(
-        f"Mood refreshes will now operate every **{newValue}** minutes (if this server operates on time-based refreshes)",
+        f"Mood refreshes will now operate every **{newValue}** minutes from next refresh onwards. (if this server operates on time-based refreshes)",
         message.channel)
 
 
@@ -1037,7 +1031,7 @@ def moodsettings_resettime(bot, message, guildData, mots) -> None:
                          message.channel)
         return
     guildData.moodResetTime = newValue
-    bot.send_message(f"Mood resets will now operate every **{newValue}** minutes", message.channel)
+    bot.send_message(f"Mood resets will now operate every **{newValue}** minutes from next reset onwards.", message.channel)
 
 
 def moodsettings_threshold(bot, message, guildData, mots) -> None:
@@ -1158,26 +1152,25 @@ def moodtraining(bot, message, guildData, mots) -> None:
                 message.channel)
 
         case "count":
+            # Create the file if it doesn't exist
+            if not os.path.exists("data/emotion_dataset.csv"):
+                with open("data/emotion_dataset.csv", "w") as f:
+                    writer = csv.writer(f)
+                    writer.writerow(["text", "emotion"])
+
             # Load dataset
             with open("data/emotion_dataset.csv", "r") as f:
                 reader = csv.reader(f)
+                reader.__next__()  # Skip header
                 data = list(reader)
+
+            if len(data) == 0:
+                bot.send_message(f"**{message.author.display_name}**, the dataset is empty, please contribute to it (see {guildData.prefix}help moodtraining toggle)", message.channel)
+                return
 
             # Count the number of entries per emotion
             emotions = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise", "sleepiness"]
             counts = [len([x for x in data if x[1] == emotion]) for emotion in emotions]
-
-            # Create the pie chart
-            colours = [[str(m.colour) for m in mood.Mood if m.emotionName == emotion][0] for emotion in emotions]
-            fig, ax = plt.subplots()
-            ax.pie(counts, labels=emotions, colors=colours, autopct='%1.1f%%', startangle=90)
-            ax.title.set_text("Percentage of dataset entries per emotion")
-
-            # Center and save the pie chart
-            ax.axis('equal')
-            fig.tight_layout()
-            plt.savefig("mood_pie.png")
-            plt.close()
 
             # Create the embed
             title = "Current mood training dataset status"
@@ -1199,6 +1192,26 @@ def moodtraining(bot, message, guildData, mots) -> None:
 
             **The pie chart below shows the percentage of entries per emotion:**
             """
+
+            # Create the pie chart
+            colours = [[str(m.colour) for m in mood.Mood if m.emotionName == emotion][0] for emotion in emotions]
+
+            # Remove the values that are 0
+            while 0 in counts:
+                index = counts.index(0)
+                del counts[index]
+                del emotions[index]
+                del colours[index]
+
+            fig, ax = plt.subplots()
+            ax.pie(counts, labels=emotions, colors=colours, autopct='%1.1f%%', startangle=90)
+            ax.title.set_text("Percentage of dataset entries per emotion")
+
+            # Center and save the pie chart
+            ax.axis('equal')
+            fig.tight_layout()
+            plt.savefig("image/mood_pie.png")
+            plt.close()
 
             # Sends the embed
             embed = discord.Embed(title=title, description=description, colour=discord.Colour.light_gray())
@@ -1242,7 +1255,7 @@ async def socialGraphCommand(bot, message: discord.Message, guildData) -> None:
                         bot.socialGraphWorker.on_command_printuser_distance(message, mentions[0].id, 2, bot),
                         bot.socialGraphLoop)
                 else:
-                    distance = args[1]
+                    distance = args[-1]
                     if distance == "all":
                         asyncio.run_coroutine_threadsafe(
                             bot.socialGraphWorker.on_command_printuser_all(message, mentions[0].id, bot),
@@ -1520,7 +1533,7 @@ def kickUser(bot, message, guildData, mots) -> None:
             f"**{message.author.display_name}**, you didn't mention any user (see `{guildData.prefix}help kick)`",
             message.channel)
         return
-    if message.mentions[0] in message.guild.members:
+    if message.mentions[0].id in message.guild.members:
         asyncio.run_coroutine_threadsafe(mod.kickUser(bot, message, guildData), bot.loop)
         if len(mots) == 3:
             asyncio.run_coroutine_threadsafe(mod.addInfoInFile(bot, message, mots[3], bot.loop))
@@ -1555,7 +1568,7 @@ def banUser(bot, message, guildData, mots):
             f"**{message.author.display_name}**, you didn't mention any user (see `{guildData.prefix}help ban)`",
             message.channel)
         return
-    if message.mentions[0] in message.guild.members:
+    if message.mentions[0].id in message.guild.members:
         asyncio.run_coroutine_threadsafe(mod.banUser(bot, message, guildData), bot.loop)
     return
 
@@ -1581,34 +1594,10 @@ def unbanUser(bot, message, guildData, mots):
             f"**{message.author.display_name}**, you didn't mention any user (see `{guildData.prefix}help unban)`",
             message.channel)
         return
-    if message.mentions[0] in message.guild.members:
+    if message.mentions[0].id in message.guild.members:
         asyncio.run_coroutine_threadsafe(mod.unbanUser(bot, message, guildData), bot.loop)
     return
 
-def getUserInfo(bot, message, guildData, mots):
-    if len(mots) == 1:
-        title = "Current getUserInfo status"
-        # print all the user info in this server
-        description = f"""
-        `{guildData.prefix}getUserInfo <user>` - get the info of the user in this server
-        """
-        embed = discord.Embed(title=title, description=description, colour=discord.Colour.light_gray())
-        asyncio.run_coroutine_threadsafe(message.channel.send(embed=embed), bot.loop)
-        return
-    authorPermed, targetPermed = checkPermissions(message, guildData)
-    if not authorPermed:
-        bot.send_message(
-            f"**{message.author.display_name}**, you must be a server administrator to use this command :/",
-            message.channel)
-        return
-    if len(message.mentions) == 0:
-        bot.send_message(
-            f"**{message.author.display_name}**, you didn't mention any user (see `{guildData.prefix}help unban)`",
-            message.channel)
-        return
-    if message.mentions[0] in message.guild.members:
-        asyncio.run_coroutine_threadsafe(mod.getInfractionInfo(bot, message, guildData), bot.loop)
-    return
 
 def checkPermissions(message, guildData):
     authorPermed = False

@@ -1,10 +1,53 @@
+import math
 import traceback
 from functools import wraps
+
 import numpy as np
 from matplotlib.colors import ListedColormap
-
 from transformers import AutoTokenizer
 from transformers import MarianMTModel, pipeline
+
+
+# •===========•
+#    MATHS
+# •===========•
+
+
+def renormaliser_sigmoid(importance: float) -> float:
+    """
+    Compute the sigmoid function
+    :param importance: the input
+    :return: the sigmoid of the importance
+    """
+    return 1 / (1 + math.exp(-x))
+
+
+def renormaliser_log2(importance: float, parameter: float) -> float:
+    """
+    Renormalises the importance of a user using the log2 function
+    :param importance: the importance of the user
+    :param parameter: the parameter of the function
+    :return: the renormalised importance
+    """
+    return math.log2(1 + importance) ** parameter
+
+
+def renormaliser(importance: float, parameter: float, type: str) -> float:
+    """
+    Renormalises the importance of a user
+    :param importance: the importance of the user
+    :param parameter: the parameter of the function
+    :param type: the type of the function
+    :return: the renormalised importance with the given function
+    """
+    match type:
+        case "log2":
+            return renormaliser_log2(importance, parameter)
+        case "sigmoid":
+            return renormaliser_sigmoid(importance)
+        case _:
+            return 1
+
 
 # •===========•
 #    COLOURS
@@ -30,13 +73,14 @@ def get_colourmap(c1, c2):
     """
     rgb1 = convert_hex_to_rgb(c1)
     rgb2 = convert_hex_to_rgb(c2)
-    
+
     n = 256
     vals = np.ones((n, 4))
     vals[:, 0] = np.linspace(rgb1[0] / rgb2[0] + 1, 1, n)
     vals[:, 1] = np.linspace(rgb1[1] / rgb2[1] + 1, 1, n)
     vals[:, 2] = np.linspace(rgb1[2] / rgb2[2] + 1, 1, n)
     return ListedColormap(vals)
+
 
 # •====================•
 #    TEXT TRANSLATION
@@ -59,7 +103,10 @@ def getLanguage(text):
     #
     # answer: torch.Tensor = outputs.logits.argmax()
 
-    return detect_language(text)[0]["label"]
+    try:
+        return detect_language(text)[0]["label"]
+    except:  # If the text is too long we analyse only the first half
+        return detect_language(text[:len(text) // 2])[0]["label"]
 
 
 def translate(text, src, trg):
@@ -77,9 +124,13 @@ def translate(text, src, trg):
 
     translation_model, translation_tokenizer = translation_models[(src, trg)]
 
-    batch = translation_tokenizer([text], return_tensors="pt")
-    generated_ids = translation_model.generate(**batch)
-    return translation_tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+    try:
+        batch = translation_tokenizer([text], return_tensors="pt")
+        generated_ids = translation_model.generate(**batch)
+        return translation_tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+    except:  # If the text is too long we split it in two, translate it and concatenate the results
+        # Could be improved by splitting the text in sentences instead of half
+        return translate(text[:len(text) // 2], src, trg) + translate(text[len(text) // 2:], src, trg)
 
 
 def toEnglish(text):
@@ -95,8 +146,6 @@ def toEnglish(text):
     if language == "fr":
         return translate(text, language, "en")
     return text
-
-
 
 
 def toFrench(text):

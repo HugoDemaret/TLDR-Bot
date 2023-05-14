@@ -1,9 +1,8 @@
 import asyncio
+import re
+from datetime import timedelta
 
 import discord
-from datetime import timedelta
-import re
-
 from sentence_transformers import SentenceTransformer
 
 from utils import *
@@ -306,7 +305,7 @@ def euclidean_distance(list1: np.ndarray, list2: np.ndarray) -> float:
 
 
 @printExceptions
-def distance(embeddingMessage1: np.ndarray, embeddingMessage2: np.ndarray) -> np.float:
+def distance(embeddingMessage1: np.ndarray, embeddingMessage2: np.ndarray):
     """
     Compute the distance between two messages
     :param embeddingMessage1: np.ndarray

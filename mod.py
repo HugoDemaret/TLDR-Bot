@@ -227,9 +227,8 @@ async def muteuser(bot, message, guildData):
         rolesToRemove = [role for role in message.guild.get_member(userID).roles if
                          role.name not in {"@everyone", "MUTED"}]
         # print(rolesToRemove)
-        if rolesToRemove != []:
-            for role in rolesToRemove:
-                asyncio.run_coroutine_threadsafe(message.guild.get_member(userID).remove_roles(role), bot.loop).result()
+        for role in rolesToRemove:
+            asyncio.run_coroutine_threadsafe(message.guild.get_member(userID).remove_roles(role), bot.loop).result()
 
         addInfoInFile(message.mentions[0].id, message.guild.id, "muted", "muted by " + message.author.name)
 
@@ -348,7 +347,8 @@ async def banUser(bot, message, arguments):
     """
     asyncio.run_coroutine_threadsafe(message.guild.ban(message.mentions[0], reason=arguments), bot.loop)
     addInfoInFile(message.mentions[0].id, message.guild.id, "ban", arguments)
-    bot.send_message(f"**{message.mentions[0]}** has been banned for {arguments}", message.channel)
+    asyncio.run_coroutine_threadsafe(
+        bot.send_message(f"**{message.mentions[0]}** has been banned for {arguments}", message.channel), bot.loop)
     bot.save()
 
 
@@ -362,7 +362,8 @@ async def unbanUser(bot, message, arguments):
     :return: None
     """
     asyncio.run_coroutine_threadsafe(message.guild.unban(message.mentions[0], reason=arguments), bot.loop)
-    bot.send_message(f"**{message.mentions[0]}** has been unbanned for {arguments}", message.channel)
+    asyncio.run_coroutine_threadsafe(
+        bot.send_message(f"**{message.mentions[0]}** has been unbanned for {arguments}", message.channel), bot.loop)
     bot.save()
 
 
@@ -377,7 +378,8 @@ async def kickUser(bot, message, arguments):
     """
     asyncio.run_coroutine_threadsafe(message.guild.kick(message.mentions[0], reason=arguments), bot.loop)
     addInfoInFile(message.mentions[0].id, message.guild.id, "kicks", arguments)
-    bot.send_message(f"**{message.mentions[0]}** has been kicked for {arguments}", message.channel)
+    asyncio.run_coroutine_threadsafe(
+        bot.send_message(f"**{message.mentions[0]}** has been kicked for {arguments}", message.channel), bot.loop)
     bot.save()
 
 
@@ -429,8 +431,8 @@ def getInfractionInfo(userID, guildID):
         with open('data/userInfo.json', 'r') as f:
             dataUser = json.load(f)
     finally:
-        data = dataUser[guildID][userID]
-    bot.send_message(f"**Current Info on {message.mentions[0]}**: {data}", message.channel)
+        data = dataUser[str(guildID)][str(userID)]
+    return data
 
 
 @printExceptions
@@ -447,5 +449,5 @@ def getUserInfoInEveryServer(userID):
         data = []
         for guild in dataUser:
             if str(userID) in dataUser[guild]:
-                data.append(dataUser[guild][userID])
+                data.append(dataUser[guild][str(userID)])
     return data

@@ -1,12 +1,14 @@
 import asyncio
 import json
-import networkx as nx
+
+import discord
 import matplotlib.pyplot as plt
+import networkx as nx
 import numpy as np
 from transformers import pipeline
+
 import mood
 import utils
-import discord
 from utils import printExceptions
 
 """
@@ -15,8 +17,6 @@ Models import
 
 model_path = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
 sentiment_task = pipeline("sentiment-analysis", model=model_path, tokenizer=model_path)
-
-
 
 
 # •======================•
@@ -39,6 +39,7 @@ class SocialGraph:
     :importanceInitValue: the initial importance value
     :interactions: the interactions
     """
+
     # •======================•
     #    CONSTRUCTOR
     # •======================•
@@ -90,6 +91,7 @@ class SocialGraph:
     """"
     Getters
     """
+
     @printExceptions
     def get_nb_message(self) -> int:
         """
@@ -158,7 +160,8 @@ class SocialGraph:
             self.agreementDict[userId1] = [0] * 2
         if userId2 not in self.agreementDict:
             self.agreementDict[userId2] = [0] * 2
-        return (self.agreementDict[userId1][0] + self.agreementDict[userId2][0]) / (self.agreementDict[userId1][1] + self.agreementDict[userId2][1])
+        return (self.agreementDict[userId1][0] + self.agreementDict[userId2][0]) / (
+                    self.agreementDict[userId1][1] + self.agreementDict[userId2][1])
 
     """
     Setters
@@ -177,10 +180,10 @@ class SocialGraph:
     #   ADDERS AND REMOVERS
     # •======================•
 
-
     """
     Adders
     """
+
     @printExceptions
     def add_user(self, userId: int) -> None:
         """
@@ -197,7 +200,7 @@ class SocialGraph:
         if userId not in self.interactions:
             self.interactions[userId] = dict()
         if userId not in self.agreementDict:
-            self.agreementDict[userId] = [0]*2
+            self.agreementDict[userId] = [0] * 2
 
     @printExceptions
     def add_message_channel_queue(self, message: discord.Message) -> None:
@@ -233,14 +236,11 @@ class SocialGraph:
         self.interactions.pop(userId)
         self.agreementDict.pop(userId)
 
-        #print(len(self.interactions))
+        # print(len(self.interactions))
 
         for userId2 in self.interactions.keys():
             if userId in self.interactions[userId2]:
                 self.interactions[userId2].pop(userId)
-
-
-
 
     # •======================•
     #    FETCH TAGGED USERS
@@ -267,6 +267,7 @@ class SocialGraph:
                 else:
                     probaDict[actualMessageAuthorId] = max(probaDict[actualMessageAuthorId], p)
         return probaDict
+
     @printExceptions
     def fetch_tagged_members(self, message: discord.Message, repliedMessage) -> dict:
         """
@@ -275,8 +276,6 @@ class SocialGraph:
         :param repliedMessage: the replied message
         :return: a dict with the id of the tagged members as key and the value 1 as value
         """
-
-
 
         # if author talks to a group of people by mentioning them, we update their importance
 
@@ -291,7 +290,8 @@ class SocialGraph:
 
         # replied message author
         if repliedMessage is not None:
-            taggedMembersId = taggedMembersId | {repliedMessage.author.id if repliedMessage.author.id != message.author.id else None}
+            taggedMembersId = taggedMembersId | {
+                repliedMessage.author.id if repliedMessage.author.id != message.author.id else None}
 
         # fills the taggedMembersValue dict with the value 1 for every member in taggedMembersId
         taggedMembersValues = {memberId: 1. for memberId in taggedMembersId}
@@ -323,7 +323,6 @@ class SocialGraph:
 
         return probaDict
 
-
     # •======================•
     #    IMPORTANCE METHODS
     # •======================•
@@ -344,8 +343,11 @@ class SocialGraph:
         if actualNbMessage == 0:
             actualNbMessage = 1
         # we get the number of people the member talked to
-        importance = ((importance * prevNbMessage) + (self.importanceDict[authorId] * taggedMemberValues[memberId]))
-        return importance / actualNbMessage
+        importance = (importance * prevNbMessage) + (self.importanceDict[authorId] * taggedMemberValues[memberId])
+        importance = importance / actualNbMessage
+        # we renormalise the importance (so it does not get too small quickly)
+        importance = utils.renormaliser(importance, 0.5, "log2")
+        return importance
 
     @printExceptions
     def update_importance(self, authorId: int, taggedMembersValues: dict[int, float]) -> None:
@@ -358,7 +360,7 @@ class SocialGraph:
         nbMsg = self.get_nb_message()
         # if the author is not in the importanceDict, we add them with the importanceInitValue
         if authorId not in self.importanceDict:
-            self.importanceDict[authorId] = 1/len(self.importanceDict)
+            self.importanceDict[authorId] = 1 / len(self.importanceDict)
             self.nbMessage_at_time[authorId] = nbMsg
 
         # we update the importance of the people the author talked to
@@ -366,7 +368,7 @@ class SocialGraph:
         for memberId in taggedMembersValues:
             # if the member is not in the importanceDict, we add him with the importanceInitValue
             if memberId not in self.importanceDict:
-                self.importanceDict[memberId] = 1/len(self.importanceDict)
+                self.importanceDict[memberId] = 1 / len(self.importanceDict)
                 self.nbMessage_at_time[memberId] = nbMsg
 
             if memberId != authorId:
@@ -376,20 +378,22 @@ class SocialGraph:
                 self.nbMessage_at_time[memberId] = nbMsg
         self.importanceMaxValue = max(self.importanceDict.values())
 
-
-
     # •======================•
     #    AGREEMENT METHODS
     # •======================•
 
     @printExceptions
-    def evaluate_agreement(self, message) -> int:
+    def evaluate_agreement(self, message_content) -> int:
         """
         Evaluate the agreement of the message
-        :param message: the message
+        :param message_content: the content of message
         :return: 1 if positive, -1 if negative, 0 if neutral
         """
-        agreement = sentiment_task(message.content)[0]["label"]
+        try:
+            agreement = sentiment_task(message_content)[0]["label"]
+        except:  # If the message is too long, we return the value of the first half of the message (should be the same as the overall message)
+            return self.evaluate_agreement(message_content[:len(message_content) // 2])
+
         match agreement:
             case "positive":
                 return 1
@@ -409,10 +413,8 @@ class SocialGraph:
         # we update the agreement of the people the author talked to
         if message.author.id not in self.agreementDict:
             self.agreementDict[message.author.id] = [0] * 2
-        self.agreementDict[message.author.id][0] += self.evaluate_agreement(message)
+        self.agreementDict[message.author.id][0] += self.evaluate_agreement(message.content)
         self.agreementDict[message.author.id][1] += 1
-
-
 
     # •==========================•
     #   GRAPH APPEARANCE METHODS
@@ -426,7 +428,7 @@ class SocialGraph:
         """
         if self.importanceMaxValue == 0.0:
             return 1000 / len(self.importanceDict)
-        return (importanceValue/self.importanceMaxValue)*(10000 / len(self.importanceDict))
+        return (importanceValue / self.importanceMaxValue) * (10000 / len(self.importanceDict))
 
     @printExceptions
     def vertex_sizes(self, users):
@@ -462,22 +464,21 @@ class SocialGraph:
         """
         agreement = self.get_agreement(user1, user2)
         if agreement >= 0.65:
-            return "#28d025"
+            return "#28D025"
         elif 0.25 <= agreement < 0.65:
-            return "#53c959"
+            return "#3BAD3E"
         elif 0.1 <= agreement < 0.25:
-            return "#7fc38c"
+            return "#4E8957"
         elif 0.1 > agreement >= -0.1:
-            return "#aabcc0"
+            return "#616670"
         elif -0.1 > agreement > -0.25:
-            return "#28d025"
+            return "#96575E"
         elif -0.25 >= agreement > -0.65:
-            return "#c69093"
+            return "#CA484B"
         elif agreement <= -0.65:
-            return "#ff3939"
+            return "#FF3939"
         else:
             raise ValueError(f"Agreement value isn't considered : {agreement}")
-
 
     @printExceptions
     def edge_width(self, key, member) -> float:
@@ -487,9 +488,9 @@ class SocialGraph:
         :param member: the second user
         :return: the width of the edge
         """
-        value = self.interactions[key][member]/(max(max(v.values()) for v in self.interactions.values() if len(v) > 0))
+        value = self.interactions[key][member] / (
+            max(max(v.values()) for v in self.interactions.values() if len(v) > 0))
         return value * 5
-
 
     # •==========================•
     #   GRAPH EXPORT METHODS
@@ -504,7 +505,7 @@ class SocialGraph:
         :return: None
         """
         members = self.guildData.displayName
-        #print(members)
+        # print(members)
         socialGraph = nx.DiGraph()
         socialGraph.add_nodes_from(members)
         cmap = utils.get_colourmap(str(mood.Mood.HAPPY.colour), str(mood.Mood.ANGRY.colour))
@@ -512,11 +513,11 @@ class SocialGraph:
             for member in self.interactions[key]:
                 socialGraph.add_edge(key, member, weight=self.edge_width(key, member), color=self.edge_colour(key, member))
 
-        #print(f'Interactions : {self.interactions}')
+        # print(f'Interactions : {self.interactions}')
 
         socialGraph = nx.generators.ego_graph(socialGraph, user, radius=distance)
 
-        members = {member : self.guildData.displayName[member] for member in socialGraph.nodes}
+        members = {member: self.guildData.displayName[member] for member in socialGraph.nodes}
         colours = [socialGraph[u][v]['color'] for u, v in socialGraph.edges]
         weights = [socialGraph[u][v]['weight'] for u, v in socialGraph.edges]
         pos = nx.circular_layout(socialGraph, scale=0.8)
@@ -535,15 +536,15 @@ class SocialGraph:
         :return: None
         """
         members = self.guildData.displayName
-        #print(members)
+        # print(members)
         socialGraph = nx.DiGraph()
         socialGraph.add_nodes_from(members)
-        #cmap = utils.get_colourmap(str(mood.Mood.HAPPY.colour), str(mood.Mood.ANGRY.colour))
+        # cmap = utils.get_colourmap(str(mood.Mood.HAPPY.colour), str(mood.Mood.ANGRY.colour))
         for key in self.interactions:
             for member in self.interactions[key]:
                 socialGraph.add_edge(key, member, weight=self.edge_width(key, member), color=self.edge_colour(key, member))
 
-        #print(self.interactions)
+        # print(self.interactions)
         colours = [socialGraph[u][v]['color'] for u, v in socialGraph.edges]
         weights = [socialGraph[u][v]['weight'] for u, v in socialGraph.edges]
         pos = nx.circular_layout(socialGraph, scale=0.8)
@@ -561,32 +562,29 @@ class SocialGraph:
         :return: None
         """
         members = self.guildData.displayName
-        #print(members)
+        # print(members)
         socialGraph = nx.DiGraph()
         socialGraph.add_nodes_from(members)
         for key in self.interactions:
             for member in self.interactions[key]:
                 socialGraph.add_edge(key, member, weight=self.edge_width(key, member), color=self.edge_colour(key, member))
 
-        #print(list(socialGraph.edges))
-        #print(self.interactions)
+        # print(list(socialGraph.edges))
+        # print(self.interactions)
         pos = nx.circular_layout(socialGraph, scale=0.8)
         colours = [socialGraph[u][v]['color'] for u, v in socialGraph.edges]
         weights = [socialGraph[u][v]['weight'] for u, v in socialGraph.edges]
         node_sizes = self.vertex_sizes(members.keys())
         node_colours = self.vertex_colour(members.keys())
-        #print(f'Node colours : {len(node_colours)} : Node sizes : {len(node_sizes)} : Colours : {len(colours)} : Weights : {len(weights)} : Members : {len(members)}')
+        # print(f'Node colours : {len(node_colours)} : Node sizes : {len(node_sizes)} : Colours : {len(colours)} : Weights : {len(weights)} : Members : {len(members)}')
         nx.draw(socialGraph, pos=pos, labels=members, with_labels=True, node_color=node_colours,
-                node_size= node_sizes, edge_color=colours, width=weights, arrowsize=list(map(lambda x: 6*x, weights)), arrowstyle='simple', connectionstyle="arc3,rad=0.15")
+                node_size=node_sizes, edge_color=colours, width=weights, arrowsize=list(map(lambda x: 6 * x, weights)), arrowstyle='simple', connectionstyle="arc3,rad=0.15")
         plt.savefig("image/SocialGraph.png", format="PNG")
         plt.close()
-
-
 
     # •======================•
     #   COMMANDS METHODS
     # •======================•
-
 
     async def on_command_sentiment(self, message: discord.Message, user, bot) -> None:
         """
@@ -639,7 +637,7 @@ class SocialGraph:
         """
         self.add_user(user)
         self.add_user(message.author.id)
-        self.export_user_graph_distance(user,distance)
+        self.export_user_graph_distance(user, distance)
         asyncio.run_coroutine_threadsafe(message.reply(file=discord.File("image/SocialGraphUserDistance.png")), bot.loop)
 
     async def on_command_importance(self, message, user, bot) -> None:
@@ -656,7 +654,6 @@ class SocialGraph:
         replyMessage = f"Importance of {user.mention} : {self.importanceDict[user.id]}"
         asyncio.run_coroutine_threadsafe(message.reply(replyMessage), bot.loop)
 
-
     # •======================•
     #   MESSAGE METHODS
     # •======================•
@@ -670,7 +667,7 @@ class SocialGraph:
         :return: None
         """
 
-        #if user is not in the socialgraph yet, we add them
+        # if user is not in the socialgraph yet, we add them
         if repliedMessage is not None:
             self.add_user(repliedMessage.author.id)
         self.add_user(message.author.id)
@@ -693,9 +690,8 @@ class SocialGraph:
         # we add the message to the channel history
         self.add_message_channel_queue(message)
 
-
-        #print(f"Tagged members : {taggedMembersValues}")
-        #add the interactions to the author and the people he talked to
+        # print(f"Tagged members : {taggedMembersValues}")
+        # add the interactions to the author and the people he talked to
         for member in taggedMembersValues:
             if message.author.id not in self.interactions:
                 self.interactions[message.author.id] = {}
@@ -705,8 +701,6 @@ class SocialGraph:
             self.interactions[message.author.id][member] += 1
 
         self.update_agreement(message, taggedMembersValues)
-
-
 
     # •======================•
     #   UTILS METHODS
@@ -719,7 +713,7 @@ class SocialGraph:
         """
 
         deleteList = set()
-        users = set(map(lambda x : x.id, self.guildData.users))
+        users = set(map(lambda x: x.id, self.guildData.users))
 
         for user in self.importanceDict.keys():
             if user not in users:
@@ -727,7 +721,6 @@ class SocialGraph:
 
         for user in deleteList:
             self.remove_user(user)
-
 
     def to_json(self) -> dict:
         """
@@ -738,14 +731,14 @@ class SocialGraph:
             "nbMessage":           self.nbMessage,
             "tagMinValue":         self.tagMinValue,
             "importanceInitValue": self.importanceInitValue,
-            "importanceDict": {str(k): v for (k, v) in self.importanceDict.items()},
-            "agreementDict": {str(k): v for (k, v) in self.agreementDict.items()},
-            "taggedDict": {str(k): v for (k, v) in self.taggedDict.items()},
-            "nbMessage_at_time": {str(k): v for (k, v) in self.nbMessage_at_time.items()},
-            "importanceMaxValue": self.importanceMaxValue,
-            "interactionsDict": {str(k): {str(kk): vv for (kk, vv) in v.items()} for (k, v) in self.interactions.items()}
+            "importanceDict":      {str(k): v for (k, v) in self.importanceDict.items()},
+            "agreementDict":       {str(k): v for (k, v) in self.agreementDict.items()},
+            "taggedDict":          {str(k): v for (k, v) in self.taggedDict.items()},
+            "nbMessage_at_time":   {str(k): v for (k, v) in self.nbMessage_at_time.items()},
+            "importanceMaxValue":  self.importanceMaxValue,
+            "interactionsDict":    {str(k): {str(kk): vv for (kk, vv) in v.items()} for (k, v) in
+                                    self.interactions.items()}
         }
-
 
 
 # •======================•
@@ -773,7 +766,6 @@ class SocialGraphWorker:
         """
         self.social_graphs = dict()
 
-
     @printExceptions
     def constructor(self, data: dict, guilds_id: set[int], guildsDict: dict) -> None:
         """
@@ -796,7 +788,8 @@ class SocialGraphWorker:
                 taggedDict = {int(k): v for (k, v) in guildInfo["taggedDict"].items()}
                 nbMessage_at_time = {int(k): v for (k, v) in guildInfo["nbMessage_at_time"].items()}
                 importanceMaxValue = guildInfo["importanceMaxValue"]
-                interactionsDict = {int(k): {int(kk): vv for (kk, vv) in v.items()} for (k, v) in guildInfo["interactionsDict"].items()}
+                interactionsDict = {int(k): {int(kk): vv for (kk, vv) in v.items()} for (k, v) in
+                                    guildInfo["interactionsDict"].items()}
 
                 self.social_graphs[str(guild_id)] = SocialGraph(nbPeople,
                                                                 tagMinValue,
@@ -814,8 +807,6 @@ class SocialGraphWorker:
             else:
                 guildData = guildsDict[guild_id]
                 SocialGraphWorker.create_default(self, guild_id, guildData)
-
-
 
     @printExceptions
     def create_default(self, guild_id: int, guildData) -> None:
@@ -883,7 +874,6 @@ class SocialGraphWorker:
         """
         self.social_graphs[str(guild.id)].remove_user(user.id)
 
-
     # •======================•
     #    COMMANDS HANDLERS
     # •======================•
@@ -906,7 +896,7 @@ class SocialGraphWorker:
         :param bot: the bot
         :return: None
         """
-        await self.social_graphs[str(message.guild.id)].on_command_printall(message,bot)
+        await self.social_graphs[str(message.guild.id)].on_command_printall(message, bot)
 
     @printExceptions
     async def on_command_printuser_all(self, message: discord.Message, userId: int, bot) -> None:
@@ -917,7 +907,7 @@ class SocialGraphWorker:
         :param bot: the bot
         :return: None
         """
-        #print("here in printuser socialgraphworker")
+        # print("here in printuser socialgraphworker")
         await self.social_graphs[str(message.guild.id)].on_command_printuser_all(message, userId, bot)
 
     @printExceptions
@@ -941,7 +931,7 @@ class SocialGraphWorker:
         :param bot: the bot
         :return: None
         """
-        await self.social_graphs[str(message.guild.id)].on_command_importance(message,user, bot)
+        await self.social_graphs[str(message.guild.id)].on_command_importance(message, user, bot)
 
     # •======================•
     #    MESSAGE PROCESSING
@@ -967,7 +957,6 @@ class SocialGraphWorker:
         Checks if the social graph of a guild is present
         """
         return str(guild_id) in self.social_graphs
-
 
     @printExceptions
     async def save(self) -> None:

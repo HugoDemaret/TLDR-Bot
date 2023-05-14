@@ -73,6 +73,12 @@ echo "2. Docker Container"
 echo "3. Run the bot normally"
 read -p "Enter your choice: " choice
 
+# If user doesn't enter a valid choice
+if [ $choice -ne 1 ] && [ $choice -ne 2 ] && [ $choice -ne 3 ]; then
+    echo "Invalid choice."
+    exit 1
+fi
+
 
 # •===========================•
 #       PACKAGE INSTALL       #
@@ -112,6 +118,10 @@ git clone https://github.com/HugoDemaret/TLDR-Bot.git
 cd TLDR-Bot
 rm -rf .git
 
+# Create dummy .env file
+touch .env
+echo 'TOKEN="your_token_here"' >> .env
+echo 'BYE_USERS="your_admin_accounts_here"' >> .env
 
 
 # Asking for the bot token
@@ -135,6 +145,12 @@ echo "Do you want to run the bot directly after configuration?"
 echo "1. Yes"
 echo "2. No"
 read -p "Enter your choice: " run_choice
+
+# If user doesn't enter a valid choice
+if [ $run_choice -ne 1 ] && [ $run_choice -ne 2 ]; then
+    echo "Invalid choice. The bot will not run directly after configuration."
+    $run_choice = 2
+fi
 
 
 ########## Install requirements function ##########

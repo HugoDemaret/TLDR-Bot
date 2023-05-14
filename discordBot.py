@@ -2,7 +2,6 @@ import asyncio
 import json
 import os
 import time
-import traceback
 from threading import Thread
 
 import discord
@@ -13,7 +12,6 @@ import mod
 import mood
 import socialGraph
 import utils
-import mod
 
 load_dotenv()
 
@@ -129,6 +127,7 @@ class Bot(discord.Client):
     :moodUpdateMinute: the current minute of the "clock" used to know when to update the moods
     :socialGraphWorker: the worker for the social graph command
     """
+
     def __init__(self, *args, **kwargs):
         """
         Constructor
@@ -159,15 +158,6 @@ class Bot(discord.Client):
         Called when the bot is ready
         :return: None
         """
-        # # INIT
-        # self.guildsId = {1063071396860805261}
-        # self.guildsDict = {1063071396860805261: GuildData(1063071396860805261, '!', 1068219110871290009, 1068219208955080747)}
-        # await self.save()
-
-        #les_projets = self.get_guild(1063071396860805261)
-        #nico = les_projets.get_member(287991042609774593)
-        #await nico.add_roles(les_projets.get_role(1073606605226135593))  # student
-        #await nico.add_roles(les_projets.get_role(1063072641738604564))  # projetL3
 
         # Get guilds ids and metadata from json
         try:
@@ -233,16 +223,10 @@ class Bot(discord.Client):
         # Launches mood updates clock
         Thread(target=self.timeLoop, daemon=True).start()
 
-        # Resets the moods for each guild
-        print("Resetting moods...")
+        # Resets the mood roles for each guild
         for guildID in self.guildsId:
             guild = self.get_guild(guildID)
-            if mood.rolesPresent(guild):
-                asyncio.run_coroutine_threadsafe(mood.removeRoles(self, guild), self.moodLoop)
-                asyncio.run_coroutine_threadsafe(mood.createRoles(self, guild), self.moodLoop)
-        print("Moods reset")
-
-
+            asyncio.run_coroutine_threadsafe(mood.resetRoles(self, guild), self.moodLoop)
 
         # Catches up on new users whose mood training setting hasn't been initialised yet
         for guildID in self.guildsId:
@@ -252,7 +236,7 @@ class Bot(discord.Client):
                     guildData.moodTraining[user.id] = False
         self.save()
 
-        #check if the muted role is present and create it if not
+        # check if the muted role is present and create it if not
         for guildID in self.guildsId:
             guild = self.get_guild(guildID)
             if not mod.rolesPresent(guild):
@@ -342,7 +326,7 @@ class Bot(discord.Client):
         if payload.channel_id == consentChannelId and payload.message_id == consentMessageId:
             guildData.users.add(user)
             guildData.displayName[user.id] = user.display_name
-            #add the user to the socialgraph
+            # add the user to the socialgraph
             asyncio.run_coroutine_threadsafe(self.socialGraphWorker.add_user(user, guildData), self.socialGraphLoop)
             guildData.moodTraining[user.id] = False
             self.save()
@@ -411,7 +395,6 @@ class Bot(discord.Client):
         if payload.channel_id != consentChannelId or payload.message_id != consentMessageId:
             return
 
-
         guildData.users.remove(user)
         guildData.moodTraining.pop(user.id)
         guildData.displayName.pop(user.id)
@@ -454,7 +437,7 @@ class Bot(discord.Client):
         if channel is None:
             channel = await guild.create_text_channel('tldr-authorisation', overwrites=overwrites)
 
-        #muted_users = dict(tuple(guild.id,user.id),list(number,all the roles id he had))) = {(,): [,[]]}
+        # muted_users = dict(tuple(guild.id,user.id),list(number,all the roles id he had))) = {(,): [,[]]}
         #: dict[tuple([int,int]), list[int,list[int]]] 
         muted_users = {}
         moderators = []
@@ -471,7 +454,7 @@ class Bot(discord.Client):
 
         if not mood.rolesPresent(guild):
             asyncio.run_coroutine_threadsafe(mood.createRoles(self, guild), self.moodLoop)
-        
+
         if not mod.rolesPresent(guild):
             asyncio.run_coroutine_threadsafe(mod.createRole(self, guild), self.autoModLoop)
         # Default social graph
@@ -552,7 +535,8 @@ class Bot(discord.Client):
             "Hey admins :eyes:, please check that all mood roles are on the top of the coloured roles order, if they're not please **put this bot's role at the top** and do `!moodroles reset`. If you don't want mood roles please do `!moodroles toggle`.\n**You might need to click the checkmark below for your commands to be registered.**\nThank you and feel free to delete this message when done :D")
         message = await channel.send(
             "Hey! I won't read your messages unless I have your consent. If you want to interact with me please click on the checkmark :D")
-        self.guildsDict[guild.id] = GuildData(guild.id, '!', channel.id, message.id, True, 15, 30, 10, 30,{}, 5, [], [], [], {}, [])
+        self.guildsDict[
+            guild.id] = GuildData(guild.id, '!', channel.id, message.id, True, 15, 30, 10, 30, {}, 5, [], [], [], {}, [])
         await message.add_reaction('✅')
 
         if not mood.rolesPresent(guild):
