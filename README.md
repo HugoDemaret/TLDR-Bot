@@ -2,7 +2,8 @@
 
 ![TLDRLOGO by Coralie Desquiens](https://github.com/HugoDemaret/TLDR-Bot/blob/main/documents/logo-light-full.png)
 
-The logo is Coralie Desquiens' property.
+The logo is Coralie Desquiens' (aka Min0w) property.
+Her portfolio : [Portfolio Min0w](https://min0w.fr/portfolio)
 
 TL;DR is a powerful Discord bot that leverages natural language processing to enhance your server experience. With TL;DR, you can easily summarise conversations, detect users' moods, create a social graph of your server, and automate moderation tasks. Whether you're looking to streamline discussions or maintain a healthy server environment, TL;DR has got you covered.
 
