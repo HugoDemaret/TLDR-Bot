@@ -1,3 +1,5 @@
+# Now available here: https://github.com/TL-DR-Bot
+
 # TL;DR (Too Long; Didn't Read) Discord Bot
 
 ![TLDRLOGO by Coralie Desquiens](https://github.com/HugoDemaret/TLDR-Bot/blob/main/documents/logo-light-full.png)
